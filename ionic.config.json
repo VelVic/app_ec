@@ -1,0 +1,7 @@
+{
+  "name": "eletric-cool",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
