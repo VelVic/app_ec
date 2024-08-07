@@ -7,6 +7,9 @@ import { UpdateEmployeeComponent } from './components/update-employee/update-emp
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateRegisterComponent } from './components/update-register/update-register.component';
+import { UpdateInventoryComponent } from './components/update-inventory/update-inventory.component';
+import { UpdateToolsComponent } from './components/update-tools/update-tools.component';
+import { UpdateCostsComponent } from './components/update-costs/update-costs.component';
 
 
 
@@ -16,7 +19,10 @@ import { UpdateRegisterComponent } from './components/update-register/update-reg
     LoginInputComponent,
     LogoComponent,
     UpdateEmployeeComponent,
-    UpdateRegisterComponent
+    UpdateRegisterComponent,
+    UpdateInventoryComponent,
+    UpdateToolsComponent,
+    UpdateCostsComponent
   ],
   exports: [
     HeaderComponent,
@@ -24,6 +30,9 @@ import { UpdateRegisterComponent } from './components/update-register/update-reg
     LogoComponent,
     UpdateEmployeeComponent,
     UpdateRegisterComponent,
+    UpdateInventoryComponent,
+    UpdateToolsComponent,
+    UpdateCostsComponent,
     FormsModule,
     ReactiveFormsModule
   ],

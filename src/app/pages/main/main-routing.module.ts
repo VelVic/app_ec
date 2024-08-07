@@ -9,6 +9,10 @@ const routes: Routes = [
     component: MainPage,
     children: [
       {
+        path: 'registers',
+        loadChildren: () => import('./registers/registers.module').then( m => m.RegistersPageModule)
+      },
+      {
         path: 'home',
         loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
       },
@@ -17,25 +21,22 @@ const routes: Routes = [
         loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
       },
       {
-        path: 'registers',
-        loadChildren: () => import('./registers/registers.module').then( m => m.RegistersPageModule)
-      }
+        path: 'tools',
+        loadChildren: () => import('./tools/tools.module').then( m => m.ToolsPageModule)
+      },
+      {
+        path: 'inventory',
+        loadChildren: () => import('./inventory/inventory.module').then( m => m.InventoryPageModule)
+      },
+      {
+        path: 'costs',
+        loadChildren: () => import('./costs/costs.module').then( m => m.CostsPageModule)
+      },
     ]
-  },  {
-    path: 'inventory',
-    loadChildren: () => import('./inventory/inventory.module').then( m => m.InventoryPageModule)
   },
-  {
-    path: 'tools',
-    loadChildren: () => import('./tools/tools.module').then( m => m.ToolsPageModule)
-  },
-  {
-    path: 'bills',
-    loadChildren: () => import('./bills/bills.module').then( m => m.BillsPageModule)
-  },
+  
 
-
-
+  
 ];
 
 @NgModule({

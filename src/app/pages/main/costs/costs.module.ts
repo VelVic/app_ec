@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { InventoryPageRoutingModule } from './inventory-routing.module';
+import { CostsPageRoutingModule } from './costs-routing.module';
 
-import { InventoryPage } from './inventory.page';
+import { CostsPage } from './costs.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    InventoryPageRoutingModule,
+    CostsPageRoutingModule,
     SharedModule
   ],
-  declarations: [InventoryPage]
+  declarations: [CostsPage]
 })
-export class InventoryPageModule {}
+export class CostsPageModule {}

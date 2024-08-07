@@ -32,7 +32,7 @@ export class UtilsService {
     return localStorage.setItem(key, JSON.stringify(value));
   }
   
-  geLocalStorage(key: string){
+  getLocalStorage(key: string){
     return JSON.parse(localStorage.getItem(key));
   }
 

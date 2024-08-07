@@ -1,18 +1,18 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Inventory } from 'src/app/models/inventory.model';
+import { Costs } from 'src/app/models/costs.models';
 import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
-  selector: 'app-update-inventory',
-  templateUrl: './update-inventory.component.html',
-  styleUrls: ['./update-inventory.component.scss'],
+  selector: 'app-update-costs',
+  templateUrl: './update-costs.component.html',
+  styleUrls: ['./update-costs.component.scss'],
 })
-export class UpdateInventoryComponent implements OnInit {
+export class UpdateCostsComponent  implements OnInit {
 
-  @Input() inventory: Inventory;
+  @Input() costs: Costs;
 
   firebaseService = inject(FirebaseService);
   utilsService = inject(UtilsService);
@@ -21,33 +21,30 @@ export class UpdateInventoryComponent implements OnInit {
   form = new FormGroup({
     id: new FormControl(''),
     elemento: new FormControl('', [Validators.required,]),
-    tipo: new FormControl('', [Validators.required]),
-    modelo: new FormControl('', [Validators.required]),
-    cantidad: new FormControl(null, [Validators.required]),
-    costo: new FormControl(null, [Validators.required]),
+    importe: new FormControl(null, [Validators.required]),
     fecha: new FormControl('', [Validators.required]),
     img: new FormControl('', [Validators.required]),
   });
   
   ngOnInit() {
     this.user = this.utilsService.getLocalStorage('user');
-    if (this.inventory) this.form.setValue(this.inventory);
+    if (this.costs) this.form.setValue(this.costs);
   }
 
   setNumberInput() {
-    let { costo } = this.form.controls;
-    if (costo.value) costo.setValue(parseFloat(costo.value));
+    let { importe } = this.form.controls;
+    if (importe.value) importe.setValue(parseFloat(importe.value));
   }
 
   async submit() {
     if (this.form.valid) {
-      if (this.inventory) this.updateInventory();
-      else this.createInventory();
+      if (this.costs) this.updateCosts();
+      else this.createCosts();
     }
   }
 
-  async createInventory() {
-    let path = `users/${this.user.uid}/inventario`
+  async createCosts() {
+    let path = `users/${this.user.uid}/costos`
 
     const loading = await this.utilsService.loading();
     await loading.present();
@@ -87,15 +84,15 @@ export class UpdateInventoryComponent implements OnInit {
       });
   }
 
-  async updateInventory() {
-    let path = `users/${this.user.uid}/inventario/${this.inventory.id}`
+  async updateCosts() {
+    let path = `users/${this.user.uid}/costos/${this.costs.id}`
 
     const loading = await this.utilsService.loading();
     await loading.present();
 
-    if (this.form.value.img !== this.inventory.img) {
+    if (this.form.value.img !== this.costs.img) {
       let dataUrl = this.form.value.img;
-      let imgPath = await this.firebaseService.getFilePath(this.inventory.img);
+      let imgPath = await this.firebaseService.getFilePath(this.costs.img);
       let imgUrl = await this.firebaseService.updateImage(imgPath, dataUrl);
 
       this.form.controls.img.setValue(imgUrl);

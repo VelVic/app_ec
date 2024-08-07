@@ -1,49 +1,49 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { Tools } from 'src/app/models/tools.models';
+import { Costs } from 'src/app/models/costs.models';
 import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
-import { UpdateToolsComponent } from 'src/app/shared/components/update-tools/update-tools.component';
+import { UpdateCostsComponent } from 'src/app/shared/components/update-costs/update-costs.component';
 
 @Component({
-  selector: 'app-tools',
-  templateUrl: './tools.page.html',
-  styleUrls: ['./tools.page.scss'],
+  selector: 'app-costs',
+  templateUrl: './costs.page.html',
+  styleUrls: ['./costs.page.scss'],
 })
-export class ToolsPage implements OnInit {
+export class CostsPage implements OnInit {
 
   utilsService = inject(UtilsService);
   firebaseService = inject(FirebaseService);
   loading: boolean = false;
-  tools: Tools[] = [];
+  costs: Costs[] = [];
 
   ngOnInit() {
   }
 
   ionViewWillEnter() {
-    this.getTools();
+    this.getCosts();
   }
 
-  async addUpdateTools(tools?: Tools) {
+  async addUpdateCosts(costs?: Costs) {
     let modal = await this.utilsService.getModal({
-      component: UpdateToolsComponent,
-      cssClass: 'add-update-tools',
-      componentProps: { tools }
+      component: UpdateCostsComponent,
+      cssClass: 'add-update-costs',
+      componentProps: { costs }
     })
-    if (modal) this.getTools();
+    if (modal) this.getCosts();
   }
 
   user(): User {
     return this.utilsService.getLocalStorage('user');
   }
 
-  getTools() {
-    let path = `users/${this.user().uid}/herramientas`;
+  getCosts() {
+    let path = `users/${this.user().uid}/costos`;
 
     this.loading = true;
 
-    let sub = this.firebaseService.getCollectionTools(path)
+    let sub = this.firebaseService.getCollectionCosts(path)
       .snapshotChanges().pipe(
         map(changes => changes.map(c => ({
           id: c.payload.doc.id,
@@ -51,7 +51,7 @@ export class ToolsPage implements OnInit {
         })))
       ).subscribe({
         next: (resp: any) => {
-          this.tools = resp
+          this.costs = resp
 
           this.loading = false;
           sub.unsubscribe();
@@ -61,30 +61,30 @@ export class ToolsPage implements OnInit {
 
   doRefresh(event: any) {
     setTimeout(() => {
-      this.getTools();
+      this.getCosts();
       event.target.complete();
     }, 1000);
   }
 
-  async deleteTools(tools: Tools) {
-    let path = `users/${this.user().uid}/herramientas/${tools.id}`
+  async deleteCosts(costs: Costs) {
+    let path = `users/${this.user().uid}/costos/${costs.id}`
 
     const loading = await this.utilsService.loading();
     await loading.present();
 
-    let imgPath = await this.firebaseService.getFilePath(tools.img);
+    let imgPath = await this.firebaseService.getFilePath(costs.img);
     await this.firebaseService.deleteFile(imgPath);
 
     this.firebaseService.deleteDocument(path)
       .then(async resp => {
 
         //Actualizar la lista de empleados
-        this.tools = this.tools.filter(e => e.id !== tools.id);
+        this.costs = this.costs.filter(e => e.id !== costs.id);
 
         this.utilsService.dismissModal({ succes: true });
 
         this.utilsService.presentToast({
-          message: 'Herramienta eliminada correctamente',
+          message: 'Elemento eliminado correctamente',
           duration: 2500,
           color: 'success',
           position: 'bottom',
@@ -105,10 +105,10 @@ export class ToolsPage implements OnInit {
       });
   }
 
-  async confirmDeleteTools(tools: Tools) {
+  async confirmDeleteCosts(costs: Costs) {
     this.utilsService.presentAlert({
-      header: 'Eliminar herramienta',
-      message: '¿Estás seguro de eliminar esta herramienta?',
+      header: 'Eliminar elemento',
+      message: '¿Estás seguro de eliminar este elemento?',
       mode: 'ios',
       buttons: [
         {
@@ -118,14 +118,14 @@ export class ToolsPage implements OnInit {
           text: 'Eliminar',
           role: 'destructive',
           handler: () => {
-            this.deleteTools(tools);
+            this.deleteCosts(costs);
           }
         }]
     })
   }
 
   getBills() {
-    return this.tools.reduce((index, tools) => index + tools.costo, 0);
+    return this.costs.reduce((index, employees) => index + employees.importe, 0);
   }
 
 }

@@ -21,14 +21,16 @@ export class UpdateEmployeeComponent implements OnInit {
   form = new FormGroup({
     id: new FormControl(''),
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    lastname: new FormControl('', [Validators.required, Validators.minLength(3)]),
     salario: new FormControl(null, [Validators.required, Validators.min(0)]),
-    plantel: new FormControl('', [Validators.required]),
+    domicilio: new FormControl('', [Validators.required]),
     cargo: new FormControl('', [Validators.required]),
-    img: new FormControl('', [Validators.required])
+    img: new FormControl('', [Validators.required]),
+    telefono: new FormControl('', [Validators.required]),
   });
 
   ngOnInit() {
-    this.user = this.utilsService.geLocalStorage('user');
+    this.user = this.utilsService.getLocalStorage('user');
     if(this.employee) this.form.setValue(this.employee);
   }
 

@@ -35,7 +35,7 @@ export class RegistersPage implements OnInit {
   }
 
   user(): User {
-    return this.utilsService.geLocalStorage('user');
+    return this.utilsService.getLocalStorage('user');
   }
 
   getRegister() {
@@ -105,7 +105,7 @@ export class RegistersPage implements OnInit {
       });
   }
 
-  async confirmDeletelRegister(register: Registers) {
+  async confirmDeleteRegister(register: Registers) {
     this.utilsService.presentAlert({
       header: 'Eliminar registro',
       message: '¿Estás seguro de eliminar este registro?',
@@ -128,4 +128,7 @@ export class RegistersPage implements OnInit {
     return this.register.reduce((index, register) => index + register.costo, 0);
   }
 
+  getPendings() {
+    return this.register.reduce((index, register) => index + register.estado !== 'Entregado' ? 1 : 0, 0);
+  }
 }

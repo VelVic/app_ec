@@ -36,7 +36,7 @@ export class HomePage implements OnInit {
   }
 
   user(): User {
-    return this.utilsService.geLocalStorage('user');
+    return this.utilsService.getLocalStorage('user');
   }
 
   getEmployee() {

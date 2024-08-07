@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar class="bgpurple">
+    <ion-buttons slot="end">
+      <ion-button routerLink="/auth">Iniciar Sesión</ion-button>
+    </ion-buttons>
+    <img src="../../../assets/icon/icono_logo_ec.png" width="70px">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="background ion-padding">
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Servicio Técnico</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="4">
+        <ion-card>
+          <img alt="Mantenimiento" src="https://www.limpiezaslm2.com/wp-content/uploads/2017/10/reparadores-de-electrodomesticos-1024x452.jpg" />
+          <ion-card-header>
+            <ion-card-title>Mantenimiento</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Ofrecemos servicios completos de mantenimiento para todo tipo de electrodomésticos, asegurando su óptimo funcionamiento y prolongando su vida útil.</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="4">
+        <ion-card>
+          <img alt="Reparación" src="https://adsonline.com.co/servitecnico/wp-content/uploads/2023/04/instalacion-1.jpg" />
+          <ion-card-header>
+            <ion-card-title>Reparación</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Contamos con un equipo de técnicos especializados en la reparación de todo tipo de electrodomésticos, solucionando averías de manera rápida y eficiente.</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="12" size-md="4">
+        <ion-card>
+          <img alt="Instalación" src="https://www.mielectro.es/blog/wp-content/uploads/2024/04/Servicio-de-instalacion.png" />
+          <ion-card-header>
+            <ion-card-title>Instalación</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Realizamos instalaciones profesionales de electrodomésticos y equipos eléctricos, garantizando un funcionamiento seguro y eficiente desde el primer día.</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Sección ¿Quiénes somos? -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>¿Quiénes somos?</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>En Electric Cool, somos un equipo apasionado por la tecnología y el servicio al cliente. Con más de 10 años de experiencia en el sector, nos especializamos en brindar soluciones de alta calidad para el mantenimiento, instalación y reparación de electrodomésticos. Nuestro objetivo es garantizar la satisfacción total de nuestros clientes mediante un servicio rápido, eficiente y amigable.</p>
+      <p>Ubicados en el corazón de la ciudad, contamos con un equipo de técnicos altamente capacitados y siempre listos para atender cualquier necesidad que pueda surgir.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Sección Servicios -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Servicios</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Mantenimiento:</strong> Realizamos revisiones periódicas para asegurar que sus electrodomésticos funcionen de manera óptima y prolongar su vida útil.</p>
+      <p><strong>Instalación:</strong> Instalamos sus nuevos electrodomésticos con precisión y cuidado, asegurando un funcionamiento adecuado y seguro.</p>
+      <p><strong>Reparación:</strong> Ofrecemos servicios de reparación para una amplia gama de electrodomésticos, desde pequeños aparatos hasta grandes equipos.</p>
+      <p>Además, ofrecemos asesoramiento personalizado y recomendaciones para el mejor cuidado y uso de sus electrodomésticos.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Sección Contacto -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Contactanos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>¿Tiene alguna pregunta o necesita asistencia? No dude en ponerse en contacto con nosotros a través de los siguientes medios:</p>
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Correo Electrónico</ion-label>
+          <ion-input type="email" placeholder="info@electriccool.com"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Teléfono</ion-label>
+          <ion-input type="tel" placeholder="(123) 456-7890"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Dirección</ion-label>
+          <ion-textarea placeholder="123 Calle Principal, Ciudad, País"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Comentario</ion-label>
+          <ion-textarea placeholder="Problema con mi refrigerador. Falla el ventilador..."></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-button shape="round" fill="outline" color="primary">Enviar Mensaje</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Ubicación</ion-card-title>
+    </ion-card-header>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3738.357413789335!2d-97.3159334247144!3d20.45050828105806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85da44320347caf1%3A0xd67509082c0a50a6!2sCarballo%2C%2093429%20Papantla%20de%20Olarte%2C%20Ver.!5e0!3m2!1ses-419!2smx!4v1723044553177!5m2!1ses-419!2smx" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </ion-card>
+
+</ion-content>

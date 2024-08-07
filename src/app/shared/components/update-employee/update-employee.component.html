@@ -28,11 +28,24 @@
       </div>
 
       <app-login-input
+      autocomplete="lastname"
+      type="text"
+      label="Apellidos"
+      [control]="form.controls.lastname"
+      ></app-login-input>    
+
+      <div class="validators" *ngIf="form.controls.lastname.errors && form.controls.lastname.touched">
+        <div *ngIf="form.controls.lastname.errors?.['required']">El apellido es requerido</div>
+        <div *ngIf="form.controls.name.errors?.['minlength']">El apellido debe contener 3 caracteres</div>
+      </div>
+
+      <app-login-input
       autocomplete="salario"
       type="number"
       label="Salario"
       [control]="form.controls.salario"
       (ionInput)="setNumberInput()"
+      value="0"
       ></app-login-input>    
 
       <div class="validators" *ngIf="form.controls.salario.errors && form.controls.salario.touched">
@@ -45,6 +58,7 @@
       type="text"
       label="Cargo"
       [control]="form.controls.cargo"
+      value="Empleado | Jefe | Gerente | Director | Otro"
       ></app-login-input>    
 
       <div class="validators" *ngIf="form.controls.cargo.errors && form.controls.cargo.touched">
@@ -52,14 +66,25 @@
       </div>
 
       <app-login-input
-      autocomplete="plantel"
+      autocomplete="domicilio"
       type="text"
-      label="Plantel"
-      [control]="form.controls.plantel"
+      label="Domicilio"
+      [control]="form.controls.domicilio"
       ></app-login-input>    
 
-      <div class="validators" *ngIf="form.controls.plantel.errors && form.controls.plantel.touched">
-        <div *ngIf="form.controls.plantel.errors?.['required']">El plantel es requerido</div>
+      <div class="validators" *ngIf="form.controls.domicilio.errors && form.controls.domicilio.touched">
+        <div *ngIf="form.controls.domicilio.errors?.['required']">El domicilio es requerido</div>
+      </div>
+
+      <app-login-input
+      autocomplete="telefono"
+      type="text"
+      label="Telefono"
+      [control]="form.controls.telefono"
+      ></app-login-input>    
+
+      <div class="validators" *ngIf="form.controls.telefono.errors && form.controls.telefono.touched">
+        <div *ngIf="form.controls.telefono.errors?.['required']">El telefono es requerido</div>
       </div>
 
       <ion-button class="submit" type="submit" mode="ios" [disabled]="form.invalid">

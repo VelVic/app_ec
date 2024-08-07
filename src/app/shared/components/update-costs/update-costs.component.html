@@ -1,0 +1,61 @@
+<app-header [isModal]="true" [title]="costs ? 'Actualizar elemento':'Agregar elemento'"></app-header>
+
+<ion-content>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="ion-padding ion-text-center" (keypress.enter)="submit()">
+
+    <ion-avatar *ngIf="form.value.img">
+      <img [src]="form.value.img" />
+    </ion-avatar>
+
+    <ion-icon class="img-icon" name="image-outline" *ngIf="!form.value.img"></ion-icon>
+
+    <br>
+    <ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
+      Tome/Seleccione una foto
+    </ion-button>
+
+    <app-login-input 
+    autocomplete="elemento" 
+    type="text" 
+    label="Elemento"
+    [control]="form.controls.elemento"
+    ></app-login-input>
+
+    <div class="validators" *ngIf="form.controls.elemento.errors && form.controls.elemento.touched">
+      <div *ngIf="form.controls.elemento.errors?.['required']">El elemento es requerido</div>
+      <div *ngIf="form.controls.elemento.errors?.['minlength']">El elemento debe contener 5 caracteres</div>
+    </div>
+
+    <app-login-input 
+    autocomplete="importe" 
+    type="number" 
+    label="Importe"
+    [control]="form.controls.importe"
+    (ionInput)="setNumberInput()"
+    ></app-login-input>
+
+    <div class="validators" *ngIf="form.controls.importe.errors && form.controls.importe .touched">
+      <div *ngIf="form.controls.importe .errors?.['required']">El importe es requerido</div>
+    </div>
+
+
+    <app-login-input 
+    autocomplete="fecha" 
+    type="date" 
+    label="Fecha" 
+    [control]="form.controls.fecha"
+    ></app-login-input>
+
+    <div class="validators" *ngIf="form.controls.fecha.errors && form.controls.fecha.touched">
+      <div *ngIf="form.controls.fecha.errors?.['required']">La fecha es requerida</div>
+    </div>
+
+    <ion-button class="submit" type="submit" mode="ios" [disabled]="form.invalid">
+      {{costs ? 'Actualizar':'Agregar'}}
+      <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-button>
+
+  </form>
+
+</ion-content>

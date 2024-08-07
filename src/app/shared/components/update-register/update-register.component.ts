@@ -33,7 +33,7 @@ export class UpdateRegisterComponent  implements OnInit {
   });
 
   ngOnInit() {
-    this.user = this.utilsService.geLocalStorage('user');
+    this.user = this.utilsService.getLocalStorage('user');
     if(this.register) this.form.setValue(this.register);
   }
 

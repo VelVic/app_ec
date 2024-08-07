@@ -25,6 +25,10 @@ const routes: Routes = [
     path: 'splash',
     loadChildren: () => import('./pages/splash/splash.module').then( m => m.SplashPageModule)
   },
+  {
+    path: 'entrance',
+    loadChildren: () => import('./pages/entrance/entrance.module').then( m => m.EntrancePageModule)
+  },
 ];
 
 @NgModule({

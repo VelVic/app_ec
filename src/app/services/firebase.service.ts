@@ -47,7 +47,7 @@ export class FirebaseService {
   signOut(){
     getAuth().signOut();
     localStorage.removeItem('user');
-    this.utilsService.routerLink('/auth');
+    this.utilsService.routerLink('/entrance');
   }
 
   addDocument(path: any, data:any){// 'users/id/empleados
@@ -69,6 +69,21 @@ export class FirebaseService {
 
   getCollectionRegister(path:any): AngularFirestoreCollection<User>{
     this.dataRef = this.firestore.collection(path, ref => ref.orderBy('fecha', 'asc'));
+    return this.dataRef;
+  }
+
+  getCollectionInventory(path:any): AngularFirestoreCollection<User>{
+    this.dataRef = this.firestore.collection(path, ref => ref.orderBy('elemento', 'asc'));
+    return this.dataRef;
+  }
+
+  getCollectionCosts(path:any): AngularFirestoreCollection<User>{
+    this.dataRef = this.firestore.collection(path, ref => ref.orderBy('elemento', 'asc'));
+    return this.dataRef;
+  }
+
+  getCollectionTools(path:any): AngularFirestoreCollection<User>{
+    this.dataRef = this.firestore.collection(path, ref => ref.orderBy('elemento', 'asc'));
     return this.dataRef;
   }
 

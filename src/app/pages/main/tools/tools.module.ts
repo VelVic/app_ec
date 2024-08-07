@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ToolsPageRoutingModule } from './tools-routing.module';
 
 import { ToolsPage } from './tools.page';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ToolsPageRoutingModule
+    ToolsPageRoutingModule,
+    SharedModule
   ],
   declarations: [ToolsPage]
 })

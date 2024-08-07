@@ -1,30 +1,49 @@
-ion-avatar {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto;
-}
-
-.i-profile{
-    width: 50%;
-    margin: 0 auto;
-    border-radius: 20px;
-    display: block;
-}
-.photo-btn {
-    position: relative;
-    bottom: 25px;
-    margin-top: 35px;
-}
-
-h2 {
-    margin-bottom: 0;
-}
-
-.cargo {
-    margin-bottom: 15px;
-}
-
-.empty-icon {
-    font-size: 140px;
-    opacity: 30%;
-}
+.profile-content {
+    --background: #f4f4f4;
+  }
+  
+  .profile-heading {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+  }
+  
+  .profile-img-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  
+  .i-profile {
+    width: 150px;
+    height: 150px;
+    border-radius: 30%;
+    object-fit: cover;
+    border: 5px solid #1E1842;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .empty-icon {
+    font-size: 120px;
+    color: #1E1842;
+  }
+  
+  .photo-btn {
+    margin: 16px 0;
+  }
+  
+  .profile-info {
+    margin: 16px 0;
+  }
+  
+  .profile-name {
+    font-size: 1.2rem;
+    color: #1E1842;
+    font-weight: bold;
+  }
+  
+  .profile-email {
+    font-size: 1rem;
+    color: #555;
+  }
+  

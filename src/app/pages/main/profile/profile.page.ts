@@ -17,7 +17,7 @@ export class ProfilePage implements OnInit {
   }
 
   user(): User {
-    return this.utilsService.geLocalStorage('user');
+    return this.utilsService.getLocalStorage('user');
   }  
 
   async takeImage() {

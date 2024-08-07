@@ -18,41 +18,41 @@ export class MainPage implements OnInit {
 
   pages = [
     {
-      title: 'Perfil',
-      url: '/main/profile',
-      icon: 'person-outline',
-      color:'dark'
+      title: 'Registros',
+      url: '/main/registers',
+      icon: 'clipboard-outline',
+      color:'light'
+    },
+    {
+      title: 'Inventario',
+      url: '/main/inventory',
+      icon: 'albums-outline',
+      color:'light'
+    },
+    {
+      title: 'Herramientas',
+      url: '/main/tools',
+      icon: 'hammer-outline',
+      color:'light'
+    },
+    {
+      title: 'Costos',
+      url: '/main/costs',
+      icon: 'wallet-outline',
+      color:'light'
     },
     {
       title: 'Empleados',
       url: '/main/home',
-      icon: 'home-outline',
-      color:'dark'
-    },
+      icon: 'person-add-outline',
+      color:'light '
+    },  
     {
-      title: 'Registros',
-      url: '/main/registers',
-      icon: 'clipboard-outline',
-      color:'dark'
+      title: 'Perfil',
+      url: '/main/profile',
+      icon: 'id-card-outline',
+      color:'light'
     },
-    {
-      title: 'Inventario',
-      url: '/main/registers',
-      icon: 'albums-outline',
-      color:'dark'
-    },
-    {
-      title: 'Herramientas',
-      url: '/main/registers',
-      icon: 'hammer-outline',
-      color:'dark'
-    },
-    {
-      title: 'Gastos',
-      url: '/main/registers',
-      icon: 'cash-outline',
-      color:'dark'
-    }
   ];
   constructor() { }
 
@@ -67,6 +67,6 @@ export class MainPage implements OnInit {
     }
 
     user(): User{
-      return this.utillsService.geLocalStorage('user');
+      return this.utillsService.getLocalStorage('user');
     }
 }

@@ -1,9 +1,27 @@
-ion-card{
-    gap: 100px;
-    padding: 20px 0;
-    border-radius: 15px;
+/* styles.css */
+
+.d-flex-center {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-ion-content{
-    --padding-bottom: 70px;
+.ion-text-center {
+  text-align: center;
+}
+
+.product-item {
+  margin-bottom: 10px;
+}
+
+.empty {
+  text-align: center;
+  padding: 20px;
+  color: #4c4c4c;
+}
+
+.empty ion-icon {
+  font-size: 80px;
+  color: #007bff;
+  margin-bottom: 10px;
 }
