@@ -18,14 +18,40 @@ export class MainPage implements OnInit {
 
   pages = [
     {
-      title: 'Inicio',
-      url: '/main/home',
-      icon: 'home-outline'
-    },
-    {
       title: 'Perfil',
       url: '/main/profile',
-      icon: 'person-outline'
+      icon: 'person-outline',
+      color:'dark'
+    },
+    {
+      title: 'Empleados',
+      url: '/main/home',
+      icon: 'home-outline',
+      color:'dark'
+    },
+    {
+      title: 'Registros',
+      url: '/main/registers',
+      icon: 'clipboard-outline',
+      color:'dark'
+    },
+    {
+      title: 'Inventario',
+      url: '/main/registers',
+      icon: 'albums-outline',
+      color:'dark'
+    },
+    {
+      title: 'Herramientas',
+      url: '/main/registers',
+      icon: 'hammer-outline',
+      color:'dark'
+    },
+    {
+      title: 'Gastos',
+      url: '/main/registers',
+      icon: 'cash-outline',
+      color:'dark'
     }
   ];
   constructor() { }

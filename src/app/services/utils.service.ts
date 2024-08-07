@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController, ModalController, ModalOptions, ToastController, ToastOptions } from '@ionic/angular';
+import { AlertController, AlertOptions, LoadingController, ModalController, ModalOptions, ToastController, ToastOptions } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Injectable({
@@ -12,6 +12,7 @@ export class UtilsService {
   toastCtrl = inject(ToastController);
   loadingCtrl = inject(LoadingController);
   modalCtrl = inject(ModalController);
+  alertCtrl = inject(AlertController);
 
   routerLink(url:any){
     this.router.navigateByUrl(url);
@@ -54,8 +55,13 @@ export class UtilsService {
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Prompt, //Opcion a elegir entre camara o galeria
       promptLabelHeader,
-      promptLabelPhoto: 'Selecciona una imagen',
-      promptLabelPicture: 'Toma una foto',
+      promptLabelPhoto: 'Seleccionar una imagen',
+      promptLabelPicture: 'Tomar una foto',
     });
   };
+
+  async presentAlert(opts?: AlertOptions){
+    const alert = await this.alertCtrl.create(opts);
+    await alert.present();
+  }
 }

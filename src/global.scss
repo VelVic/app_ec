@@ -29,8 +29,13 @@ ion-button {
     text-transform: none;
 }
 
+.bgpurple {
+    --background: #1E1842;//9705c0; custom #1E1842
+    --color:white
+}
+
 .new-background-color{
-    --background: #54b2ff;//9705c0; custom
+    --background: #32B3E6;//9705c0; custom #1E1842
     --color:white
 }
 

@@ -1,7 +1,6 @@
-<app-header [isModal]="true" title="Agregar"></app-header>
+<app-header [isModal]="true" [title]="employee ? 'Actualizar empleado':'Agregar empleado'"></app-header>
 
 <ion-content>
-
 
     <form [formGroup]="form" (ngSubmit)="submit()" class="ion-padding ion-text-center" (keypress.enter)="submit()">
 
@@ -33,6 +32,7 @@
       type="number"
       label="Salario"
       [control]="form.controls.salario"
+      (ionInput)="setNumberInput()"
       ></app-login-input>    
 
       <div class="validators" *ngIf="form.controls.salario.errors && form.controls.salario.touched">
@@ -63,7 +63,7 @@
       </div>
 
       <ion-button class="submit" type="submit" mode="ios" [disabled]="form.invalid">
-        Agregar Empleado
+        {{employee ? 'Actualizar':'Agregar'}}
         <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
       </ion-button>
 

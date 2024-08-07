@@ -8,7 +8,7 @@ ion-item {
     font-size: 14px;
     --color: #000000;
     // --background: var(--ion-color-primary);
-    --background: #ffffff;//#9705c0;
+    --background: #ffffff; //#9705c0;
 
     ion-icon {
         color: #000000
@@ -23,10 +23,25 @@ ion-item {
     }
 }
 
+ion-menu::part(backdrop) {
+    /* background-image: url(/assets/img/icono_ipn1.png); */
+    background-repeat: no-repeat;
+    background-size: 300px;
+    background-position: center;
+    background-position-x: right;
+    background-color: #000000;
+}
+
+ion-menu::part(container) {
+    border-radius: 0 20px 20px 0;
+
+    box-shadow: 4px 0px 20px #000000;
+}
+
 ion-menu {
     --width: 254px;
     --min-width: 254px;
-    outline: none  //Eliminar borde de color
+    outline: none //Eliminar borde de color
 }
 
 h4 {
@@ -39,10 +54,12 @@ ion-avatar {
     height: 120px;
     margin: 0 auto;
 }
+
 .empty-icon {
     font-size: 100px;
     color: #ff6c1d; //Custom
 }
+
 .name-user {
     color: #ff6c1d; //Custom
 }

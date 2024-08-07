@@ -1,5 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Employees } from 'src/app/models/employees.model';
 import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -10,6 +11,8 @@ import { UtilsService } from 'src/app/services/utils.service';
   styleUrls: ['./update-employee.component.scss'],
 })
 export class UpdateEmployeeComponent implements OnInit {
+
+  @Input() employee: Employees;
 
   firebaseService = inject(FirebaseService);
   utilsService = inject(UtilsService);
@@ -26,37 +29,22 @@ export class UpdateEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.utilsService.geLocalStorage('user');
+    if(this.employee) this.form.setValue(this.employee);
+  }
+
+  setNumberInput(){
+    let { salario } = this.form.controls;
+    if (salario.value) salario.setValue(parseFloat(salario.value));
   }
 
   async submit() {
-    this.createEmployee();
-    /* if (this.form.valid) {
-      const loading = await this.utillsService.loading();
-
-      await loading.present();
-
-      this.firebaseService.signIn(this.form.value as User)
-        .then(resp => {
-
-          this.getUserInfo(resp.user.uid)
-
-        }).catch(error => {
-          console.log(error);
-          this.utillsService.presentToast({
-            message: error.message,
-            duration: 2500,
-            color: 'danger',
-            position: 'bottom',
-            icon: 'alert-circle-outline'
-          })
-        }).finally(() => {
-          loading.dismiss();
-        });
-    } */
+    if(this.form.valid){
+      if(this.employee) this.updateEmployee();
+      else this.createEmployee();
+    }
   }
 
   async createEmployee() {
-
     let path = `users/${this.user.uid}/empleados`
 
     const loading = await this.utilsService.loading();
@@ -77,6 +65,49 @@ export class UpdateEmployeeComponent implements OnInit {
 
         this.utilsService.presentToast({
           message: 'Empleado creado correctamente',
+          duration: 2500,
+          color: 'success',
+          position: 'bottom',
+          icon: 'checkmark-circle-outline'
+        })
+        this.utilsService.dismissModal(true);
+      }).catch(error => {
+        console.log(error);
+        this.utilsService.presentToast({
+          message: error.message,
+          duration: 2500,
+          color: 'danger',
+          position: 'bottom',
+          icon: 'alert-circle-outline'
+        })
+      }).finally(() => {
+        loading.dismiss();
+      });
+  }
+
+  async updateEmployee() {
+    let path = `users/${this.user.uid}/empleados/${this.employee.id}`
+
+    const loading = await this.utilsService.loading();
+    await loading.present();
+
+    if(this.form.value.img !== this.employee.img){
+      let dataUrl = this.form.value.img;
+      let imgPath = await this.firebaseService.getFilePath(this.employee.img);
+      let imgUrl = await this.firebaseService.updateImage(imgPath, dataUrl);
+
+      this.form.controls.img.setValue(imgUrl);
+    }
+
+    delete this.form.value.id;
+
+    this.firebaseService.updateDocument(path, this.form.value)
+      .then( async resp =>{
+
+        this.utilsService.dismissModal({ succes: true });
+
+        this.utilsService.presentToast({
+          message: 'Empleado actualizado correctamente',
           duration: 2500,
           color: 'success',
           position: 'bottom',

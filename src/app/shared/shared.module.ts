@@ -6,6 +6,7 @@ import { LogoComponent } from './components/logo/logo.component';
 import { UpdateEmployeeComponent } from './components/update-employee/update-employee.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UpdateRegisterComponent } from './components/update-register/update-register.component';
 
 
 
@@ -14,13 +15,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     LoginInputComponent,
     LogoComponent,
-    UpdateEmployeeComponent
+    UpdateEmployeeComponent,
+    UpdateRegisterComponent
   ],
   exports: [
     HeaderComponent,
     LoginInputComponent,
     LogoComponent,
     UpdateEmployeeComponent,
+    UpdateRegisterComponent,
     FormsModule,
     ReactiveFormsModule
   ],

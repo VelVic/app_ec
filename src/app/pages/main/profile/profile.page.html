@@ -1,14 +1,17 @@
 <app-header [showMenu]="true" title="Perfil"></app-header>
 
 <ion-content class="ion-padding-top ion-text-center">
-    <ion-avatar>
-        <ion-icon class="empty-icon" name="person-circle-outline"></ion-icon>
-      </ion-avatar>
+    <img class="i-profile" *ngIf="user()?.img" [src]="user()?.img" alt="">
+    <ion-icon *ngIf="!user()?.img" class="empty-icon" name="person-circle-outline"></ion-icon>
 
-      <ion-button class="photo-btn" mode="ios" size="small" shape="round">
-        <ion-icon name="camera-outline"></ion-icon>
-      </ion-button>
+  <ion-button class="photo-btn" (click)="takeImage()" mode="ios" size="small" shape="round">
+    <ion-icon slot="start" name="camera-outline"></ion-icon>
+    Tomar/Seleccionar una foto
+  </ion-button>
 
-      <h4>Victor Manuel</h4>
-      <div class="cargo">Director General</div>
+  <br>
+  <div>
+    <h3> {{ user()?.name }}</h3>
+  </div>
+  
 </ion-content>

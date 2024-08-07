@@ -3,9 +3,9 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, up
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { User } from '../models/user.model';
-import { addDoc, collection, doc, getDoc, getFirestore, setDoc } from '@angular/fire/firestore';
+import { addDoc, collection, deleteDoc, doc, getDoc, getFirestore, setDoc, updateDoc } from '@angular/fire/firestore';
 import { UtilsService } from './utils.service';
-import { getDownloadURL, getStorage, ref, uploadString } from 'firebase/storage';
+import { deleteObject, getDownloadURL, getStorage, ref, uploadString } from 'firebase/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,6 @@ export class FirebaseService {
   firestore = inject(AngularFirestore);
   utilsService = inject(UtilsService);
   dataRef: AngularFirestoreCollection<User>;
-
   gethAuth() {
     return getAuth();
   }
@@ -67,5 +66,26 @@ export class FirebaseService {
     this.dataRef = this.firestore.collection(path, ref => ref.orderBy('name', 'asc'));
     return this.dataRef;
   }
-  
+
+  getCollectionRegister(path:any): AngularFirestoreCollection<User>{
+    this.dataRef = this.firestore.collection(path, ref => ref.orderBy('fecha', 'asc'));
+    return this.dataRef;
+  }
+
+  //Obtener la ruta de la imagen con su url
+  async getFilePath(url: string){
+    return ref(getStorage(), url).fullPath;
+  }
+
+  updateDocument(path: any, data: any){
+    return updateDoc(doc(getFirestore(), path), data);
+  }
+
+  deleteDocument(path: any){
+    return deleteDoc(doc(getFirestore(), path));
+  }  
+
+  deleteFile(path: any){
+    return deleteObject(ref(getStorage(), path));
+  }  
 }

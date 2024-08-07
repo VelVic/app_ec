@@ -15,9 +15,27 @@ const routes: Routes = [
       {
         path: 'profile',
         loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+      },
+      {
+        path: 'registers',
+        loadChildren: () => import('./registers/registers.module').then( m => m.RegistersPageModule)
       }
     ]
+  },  {
+    path: 'inventory',
+    loadChildren: () => import('./inventory/inventory.module').then( m => m.InventoryPageModule)
   },
+  {
+    path: 'tools',
+    loadChildren: () => import('./tools/tools.module').then( m => m.ToolsPageModule)
+  },
+  {
+    path: 'bills',
+    loadChildren: () => import('./bills/bills.module').then( m => m.BillsPageModule)
+  },
+
+
+
 ];
 
 @NgModule({
