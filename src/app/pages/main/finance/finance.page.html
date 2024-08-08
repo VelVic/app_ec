@@ -1,0 +1,39 @@
+<app-header [showMenu]="true" title="Finanzas"></app-header>
+
+<ion-content class="ion-padding custom-content">
+
+  <ion-card class="custom-card" id="finance-content">
+    <ion-card-header class="ion-text-center">
+      <h2>Reporte Financiero</h2>
+    </ion-card-header>
+
+    <ion-card-content>
+      <!-- Tu contenido financiero aquí -->
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h3>Ingresos</h3>
+            <p>$10,000</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h3>Gastos</h3>
+            <p>$5,000</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h3>Ganancia Neta</h3>
+            <p>$5,000</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="full" class="ion-margin-top">
+    Descargar PDF
+  </ion-button>
+
+</ion-content>

@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { UpdateEmployeeComponent } from 'src/app/shared/components/update-employee/update-employee.component';
+import { ViewEmployeeComponent } from 'src/app/shared/components/view-employee/view-employee.component';
 
 @Component({
   selector: 'app-home',
@@ -37,6 +38,14 @@ export class HomePage implements OnInit {
 
   user(): User {
     return this.utilsService.getLocalStorage('user');
+  }
+
+  async viewEmployee(employee?: Employees) {
+    await this.utilsService.getModal({
+      component: ViewEmployeeComponent,
+      cssClass: 'add-view-inventory',
+      componentProps: { employee }
+    })
   }
 
   getEmployee() {

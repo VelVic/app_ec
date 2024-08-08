@@ -19,7 +19,10 @@ export class UtilsService {
   }
 
   loading(){
-    return this.loadingCtrl.create({ spinner : 'crescent' });
+    return this.loadingCtrl.create({ 
+      spinner : 'crescent',
+      message: 'Cargando...',
+      translucent: true,});
   }
 
   async presentToast(opts?: ToastOptions){

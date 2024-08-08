@@ -6,11 +6,11 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
-  selector: 'app-update-inventory',
-  templateUrl: './update-inventory.component.html',
-  styleUrls: ['./update-inventory.component.scss'],
+  selector: 'app-view-inventory',
+  templateUrl: './view-inventory.component.html',
+  styleUrls: ['./view-inventory.component.scss'],
 })
-export class UpdateInventoryComponent implements OnInit {
+export class ViewInventoryComponent  implements OnInit {
 
   @Input() inventory: Inventory;
 
@@ -89,7 +89,7 @@ export class UpdateInventoryComponent implements OnInit {
   }
 
   async updateInventory() {
-    let path = `inventario/${this.inventory.id}`;
+    let path = `inventario/${this.inventory.elemento}`;
     /* let path = `users/${this.user.uid}/inventario/${this.inventory.id}` */ // Por si queremos dividir el inventario por usuario
 
     const loading = await this.utilsService.loading();
@@ -138,3 +138,4 @@ export class UpdateInventoryComponent implements OnInit {
   }
 
 }
+

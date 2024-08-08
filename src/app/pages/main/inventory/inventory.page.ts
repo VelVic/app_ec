@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { UpdateInventoryComponent } from 'src/app/shared/components/update-inventory/update-inventory.component';
+import { ViewInventoryComponent } from 'src/app/shared/components/view-inventory/view-inventory.component';
 
 @Component({
   selector: 'app-inventory',
@@ -38,8 +39,17 @@ export class InventoryPage implements OnInit {
     return this.utilsService.getLocalStorage('user');
   }
 
+  async viewInventory(inventory?: Inventory) {
+    await this.utilsService.getModal({
+      component: ViewInventoryComponent,
+      cssClass: 'add-view-inventory',
+      componentProps: { inventory }
+    })
+  }
+
   getInventory() {
-    let path = `users/${this.user().uid}/inventario`;
+    let path = `inventario/`;
+    /* let path = `users/${this.user().uid}/inventario`; */ // Por si queremos dividir el inventario por usuario
 
     this.loading = true;
 
@@ -67,7 +77,8 @@ export class InventoryPage implements OnInit {
   }
 
   async deleteInventory(inventory: Inventory) {
-    let path = `users/${this.user().uid}/inventario/${inventory.id}`
+    let path = `inventario/${inventory.id}`;
+    /* let path = `users/${this.user().uid}/inventario/${inventory.id}` */ // Por si queremos dividir el inventario por usuario
 
     const loading = await this.utilsService.loading();
     await loading.present();

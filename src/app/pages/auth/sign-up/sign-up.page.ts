@@ -17,6 +17,7 @@ export class SignUpPage implements OnInit {
   form = new FormGroup({
     uid: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
+    tipo: new FormControl('', [Validators.required, Validators.minLength(3)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     name: new FormControl('', [Validators.required, Validators.minLength(3)])
   });

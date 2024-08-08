@@ -34,6 +34,19 @@
       </div>
 
       <app-login-input
+      autocomplete="tipo"
+      type="tipo"
+      label="Tipo"
+      icon="people-outline"
+      [control]="form.controls.tipo"
+      ></app-login-input>    
+
+      <div class="validators" *ngIf="form.controls.tipo.errors && form.controls.tipo.touched">
+        <div *ngIf="form.controls.tipo.errors?.['required']">El tipo es requerido</div>
+        <div *ngIf="form.controls.tipo.errors?.['minlength']">Ingresa un tipo mayor a 3 caracteres</div>
+      </div>
+
+      <app-login-input
       type="password"
       label="Contraseña"
       icon="lock-closed-outline"

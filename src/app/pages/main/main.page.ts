@@ -42,15 +42,30 @@ export class MainPage implements OnInit {
       color:'light'
     },
     {
-      title: 'Empleados',
-      url: '/main/home',
-      icon: 'person-add-outline',
-      color:'light '
-    },  
-    {
       title: 'Perfil',
       url: '/main/profile',
       icon: 'id-card-outline',
+      color:'light'
+    },
+  ];
+
+  admin = [
+    {
+      title: 'Finanzas',
+      url: '/main/finance',
+      icon: 'cash-outline',
+      color:'light'
+    },
+    {
+      title: 'Empleados',
+      url: '/main/home',
+      icon: 'people-outline',
+      color:'light'
+    },
+    {
+      title: 'Crear Cuenta',
+      url: '/main/create-account',
+      icon: 'person-add-outline',
       color:'light'
     },
   ];

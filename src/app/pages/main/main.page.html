@@ -8,16 +8,26 @@
     </ion-avatar>
 
     <h4 class="name-user">{{ user()?.name }}</h4>
+    <h6 *ngIf="user()?.tipo === 'admin'" class="name-user">Administrador</h6>
+    <h6 *ngIf="user()?.tipo !== 'admin'" class="name-user">Empleado</h6>  
 
+    <ion-menu-toggle autoHide="false" *ngFor="let a of admin">
+      <ion-item *ngIf="user()?.tipo === 'admin'" lines="full" class="menu-item" [ngClass]="{'active': currentPath === a.url}" [routerLink]="a.url" routerDirection="root" detail>
+        <ion-icon [color]="a.color" slot="start" [name]="a.icon"></ion-icon>
+        <ion-label>{{ a.title }}</ion-label>
+      </ion-item>
+    </ion-menu-toggle>
     <ion-menu-toggle autoHide="false" *ngFor="let p of pages">
       <ion-item lines="full" class="menu-item" [ngClass]="{'active': currentPath === p.url}" [routerLink]="p.url" routerDirection="root" detail>
         <ion-icon [color]="p.color" slot="start" [name]="p.icon"></ion-icon>
         <ion-label>{{ p.title }}</ion-label>
       </ion-item>
     </ion-menu-toggle>
+
   </ion-content>
 
-  <ion-footer class="ion-no-border menu-footer bgpurple">  
+
+  <ion-footer class="ion-no-border menu-footer bgpurple"> 
       <ion-item (click)="signOut()" lines="none">
         <ion-icon slot="start" color="danger" name="log-out-outline"></ion-icon>
         <ion-label>Cerrar Sesión</ion-label>

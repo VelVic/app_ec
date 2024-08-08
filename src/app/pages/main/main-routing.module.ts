@@ -32,10 +32,12 @@ const routes: Routes = [
         path: 'costs',
         loadChildren: () => import('./costs/costs.module').then( m => m.CostsPageModule)
       },
+      {
+        path: 'finance',
+        loadChildren: () => import('./finance/finance.module').then( m => m.FinancePageModule)
+      },
     ]
   },
-  
-
   
 ];
 

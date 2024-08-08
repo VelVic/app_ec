@@ -4,52 +4,50 @@
     align-items: center;
     height: 100%;
     background-color: #f4f5f8;
-  }
-  
-  .custom-card {
+}
+
+.custom-card {
     max-width: 600px;
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
     padding: 20px;
-  }
-  
-  .profile-avatar {
+}
+
+.profile-avatar {
     width: 100%;
     height: 50%;
     --border-radius: 15px;
-    margin: 0 auto 20px;
-  }
-  
-  .img-icon {
-    width: 100%;
+    margin: 0px;
+}
+
+.img-icon {
     font-size: 100px;
     color: var(--ion-color-medium);
     margin: 20px 0;
-  }
-  
-  .validators {
-    font-size: 0.9em;
-    color: #ff1900;
-    margin-top: -3px;
-  }
-  
-  ion-grid {
-    --ion-grid-column-padding: 5px;
+}
+
+.item-title {
+    font-weight: 600;
+    font-size: 1.2em;
+    color: #333;
+    padding: 10px;
+}
+
+.item-value {
+    font-size: 1.1em;
+    color: #666;
+    padding: 10px;
+}
+
+ion-grid {
+    --ion-grid-column-padding: 10px;
     --ion-grid-padding: 0;
-  }
-  
-  ion-row {
+}
+
+ion-row {
     border-bottom: 1px solid #ddd;
-  }
-  
-  ion-row:last-child {
+}
+
+ion-row:last-child {
     border-bottom: none;
-  }
-  
-  @media (max-width: 767px) {
-    .profile-avatar {
-      width: 90%;
-      height: auto;
-    }
-  }
-  
+}
