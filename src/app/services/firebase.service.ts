@@ -47,7 +47,7 @@ export class FirebaseService {
   signOut(){
     getAuth().signOut();
     localStorage.removeItem('user');
-    this.utilsService.routerLink('/entrance');
+    this.utilsService.routerLink('/auth');
   }
 
   addDocument(path: any, data:any){// 'users/id/empleados

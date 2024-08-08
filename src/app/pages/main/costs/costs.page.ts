@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { UpdateCostsComponent } from 'src/app/shared/components/update-costs/update-costs.component';
+import { ViewCostsComponent } from 'src/app/shared/components/view-costs/view-costs.component';
 
 @Component({
   selector: 'app-costs',
@@ -38,8 +39,17 @@ export class CostsPage implements OnInit {
     return this.utilsService.getLocalStorage('user');
   }
 
+  async viewCosts(costs?: Costs) {
+    await this.utilsService.getModal({
+      component: ViewCostsComponent,
+      cssClass: 'add-view-costs',
+      componentProps: { costs }
+    })
+  }
+
   getCosts() {
-    let path = `users/${this.user().uid}/costos`;
+    let path = `costos/`;
+    /* let path = `users/${this.user().uid}/costos`; */
 
     this.loading = true;
 
@@ -67,7 +77,8 @@ export class CostsPage implements OnInit {
   }
 
   async deleteCosts(costs: Costs) {
-    let path = `users/${this.user().uid}/costos/${costs.id}`
+    let path = `costos/${costs.id}`
+    /* let path = `users/${this.user().uid}/costos/${costs.id}` */
 
     const loading = await this.utilsService.loading();
     await loading.present();

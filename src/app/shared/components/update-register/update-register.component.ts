@@ -50,7 +50,8 @@ export class UpdateRegisterComponent  implements OnInit {
   }
 
   async createRegister() {
-    let path = `users/${this.user.uid}/registros`
+    let path = `registros`
+    /* let path = `users/${this.user.uid}/registros` */
 
     const loading = await this.utilsService.loading();
     await loading.present();
@@ -91,7 +92,8 @@ export class UpdateRegisterComponent  implements OnInit {
   }
 
   async updateRegister() {
-    let path = `users/${this.user.uid}/registros/${this.register.id}`
+    let path = `registros/${this.register.id}`
+    /* let path = `users/${this.user.uid}/registros/${this.register.id}` */
 
     const loading = await this.utilsService.loading();
     await loading.present();

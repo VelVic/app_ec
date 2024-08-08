@@ -18,13 +18,13 @@ export class MainPage implements OnInit {
 
   pages = [
     {
-      title: 'Registros',
+      title: 'Clientes (ventas)',
       url: '/main/registers',
       icon: 'clipboard-outline',
       color:'light'
     },
     {
-      title: 'Inventario',
+      title: 'Productos (stock)',
       url: '/main/inventory',
       icon: 'albums-outline',
       color:'light'
@@ -36,7 +36,7 @@ export class MainPage implements OnInit {
       color:'light'
     },
     {
-      title: 'Costos',
+      title: 'Servicios (gastos)',
       url: '/main/costs',
       icon: 'wallet-outline',
       color:'light'

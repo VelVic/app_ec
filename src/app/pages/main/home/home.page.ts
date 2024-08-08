@@ -49,7 +49,8 @@ export class HomePage implements OnInit {
   }
 
   getEmployee() {
-    let path = `users/${this.user().uid}/empleados`;
+    let path = `empleados/`;
+    /* let path = `users/${this.user().uid}/empleados`; */
 
     this.loading = true;
 
@@ -77,7 +78,8 @@ export class HomePage implements OnInit {
   }
 
   async deleteEmployee(employee: Employees) {
-    let path = `users/${this.user().uid}/empleados/${employee.id}`
+    let path = `empleados/${employee.id}`
+    /* let path = `users/${this.user().uid}/empleados/${employee.id}` */
 
     const loading = await this.utilsService.loading();
     await loading.present();

@@ -44,7 +44,8 @@ export class UpdateCostsComponent  implements OnInit {
   }
 
   async createCosts() {
-    let path = `users/${this.user.uid}/costos`
+    let path = `costos`
+    /* let path = `users/${this.user.uid}/costos` */
 
     const loading = await this.utilsService.loading();
     await loading.present();
@@ -85,7 +86,8 @@ export class UpdateCostsComponent  implements OnInit {
   }
 
   async updateCosts() {
-    let path = `users/${this.user.uid}/costos/${this.costs.id}`
+    let path = `costos/${this.costs.id}`
+    /* let path = `users/${this.user.uid}/costos/${this.costs.id}` */
 
     const loading = await this.utilsService.loading();
     await loading.present();

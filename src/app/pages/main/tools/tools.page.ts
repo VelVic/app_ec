@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { UpdateToolsComponent } from 'src/app/shared/components/update-tools/update-tools.component';
+import { ViewToolsComponent } from 'src/app/shared/components/view-tools/view-tools.component';
 
 @Component({
   selector: 'app-tools',
@@ -38,8 +39,17 @@ export class ToolsPage implements OnInit {
     return this.utilsService.getLocalStorage('user');
   }
 
+  async viewTools(tools?: Tools) {
+    await this.utilsService.getModal({
+      component: ViewToolsComponent,
+      cssClass: 'add-view-tools',
+      componentProps: { tools }
+    })
+  }
+
   getTools() {
-    let path = `users/${this.user().uid}/herramientas`;
+    let path = `herramientas/`;
+    /* let path = `users/${this.user().uid}/herramientas`; */
 
     this.loading = true;
 
@@ -67,7 +77,8 @@ export class ToolsPage implements OnInit {
   }
 
   async deleteTools(tools: Tools) {
-    let path = `users/${this.user().uid}/herramientas/${tools.id}`
+    let path = `herramientas/${tools.id}`
+    /* let path = `users/${this.user().uid}/herramientas/${tools.id}` */
 
     const loading = await this.utilsService.loading();
     await loading.present();

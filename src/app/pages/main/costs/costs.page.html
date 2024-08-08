@@ -1,13 +1,14 @@
 <app-header [showMenu]="true" title="Costos"></app-header>
 
 <ion-content>
+
   <!-- Refrescador -->
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
   <!-- Tarjeta de Resumen de Costos -->
-  <ng-container *ngIf="!loading">
+  <ng-container *ngIf="!loading && user()?.tipo === 'admin'">
     <ion-card mode="ios" class="bgpurple d-flex-center ion-text-center" *ngIf="costs?.length">
       <div>
         <h5>{{ costs.length }}</h5>
@@ -18,8 +19,10 @@
         <p>Costo Total</p>
       </div>
     </ion-card>
+  </ng-container>
 
-    <!-- Lista de Costos -->
+  <!-- Lista de Costos -->
+  <ng-container *ngIf="!loading">
     <ion-list>
       <ion-item-sliding class="product-item" *ngFor="let costo of costs">
         <ion-item>
@@ -36,44 +39,50 @@
         </ion-item>
 
         <ion-item-options>
-          <ion-item-option (click)="addUpdateCosts(costo)">
+          <ion-item-option (click)="addUpdateCosts(costo)" color="primary" *ngIf="user()?.tipo === 'admin'">
             <ion-icon class="option-btn" name="create-outline"></ion-icon>
           </ion-item-option>
-          <ion-item-option (click)="confirmDeleteCosts(costo)" color="danger">
+          <ion-item-option (click)="viewCosts(costo)" color="success">
+            <ion-icon class="option-btn" name="document-text-outline"></ion-icon>
+          </ion-item-option>
+          <ion-item-option (click)="confirmDeleteCosts(costo)" color="danger" *ngIf="user()?.tipo === 'admin'">
             <ion-icon class="option-btn" name="trash-outline"></ion-icon>
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>
-
-    <!-- Mensaje de Vacío -->
-    <div class="empty" *ngIf="!costs.length">
-      <ion-icon name="diamond-outline"></ion-icon>
-      <h3>No hay costos disponibles</h3>
-    </div>
   </ng-container>
 
+  <!-- Mensaje de Vacío -->
+  <div class="empty" *ngIf="!loading && !costs.length">
+    <ion-icon name="diamond-outline"></ion-icon>
+    <h3>No hay costos disponibles</h3>
+  </div>
+
   <!-- Skeleton Loader para la carga de datos -->
-  <ion-list *ngIf="loading">
-    <ion-item-sliding class="product-item" *ngFor="let dummy of [1,1,1,1,1,1,1]">
-      <ion-item>
-        <ion-avatar slot="start">
-          <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
-        </ion-avatar>
-        <ion-label>
-          <div>
-            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-            <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
-          </div>
-        </ion-label>
-      </ion-item>
-    </ion-item-sliding>
-  </ion-list>
+  <ng-container *ngIf="loading">
+    <ion-list>
+      <ion-item-sliding class="product-item" *ngFor="let dummy of [1,1,1,1,1,1,1]">
+        <ion-item>
+          <ion-avatar slot="start">
+            <ion-skeleton-text animated style="width: 100%; height: 100%;"></ion-skeleton-text>
+          </ion-avatar>
+          <ion-label>
+            <div>
+              <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+              <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+            </div>
+          </ion-label>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
+  </ng-container>
 
   <!-- Botón Flotante -->
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+  <ion-fab *ngIf="user()?.tipo === 'admin'" vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="addUpdateCosts()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+  
 </ion-content>

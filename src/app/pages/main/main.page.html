@@ -17,6 +17,7 @@
         <ion-label>{{ a.title }}</ion-label>
       </ion-item>
     </ion-menu-toggle>
+    
     <ion-menu-toggle autoHide="false" *ngFor="let p of pages">
       <ion-item lines="full" class="menu-item" [ngClass]="{'active': currentPath === p.url}" [routerLink]="p.url" routerDirection="root" detail>
         <ion-icon [color]="p.color" slot="start" [name]="p.icon"></ion-icon>

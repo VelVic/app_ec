@@ -47,7 +47,8 @@ export class UpdateEmployeeComponent implements OnInit {
   }
 
   async createEmployee() {
-    let path = `users/${this.user.uid}/empleados`
+    let path = `empleados`
+    /* let path = `users/${this.user.uid}/empleados` */
 
     const loading = await this.utilsService.loading();
     await loading.present();
@@ -88,7 +89,8 @@ export class UpdateEmployeeComponent implements OnInit {
   }
 
   async updateEmployee() {
-    let path = `users/${this.user.uid}/empleados/${this.employee.id}`
+    let path = `empleados/${this.employee.id}`
+    /* let path = `users/${this.user.uid}/empleados/${this.employee.id}` */
 
     const loading = await this.utilsService.loading();
     await loading.present();

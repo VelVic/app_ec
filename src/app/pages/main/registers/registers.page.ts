@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { UpdateRegisterComponent } from 'src/app/shared/components/update-register/update-register.component';
+import { ViewRegisterComponent } from 'src/app/shared/components/view-register/view-register.component';
 
 @Component({
   selector: 'app-registers',
@@ -38,8 +39,17 @@ export class RegistersPage implements OnInit {
     return this.utilsService.getLocalStorage('user');
   }
 
+  async viewRegister(register?: Registers) {
+    await this.utilsService.getModal({
+      component: ViewRegisterComponent,
+      cssClass: 'add-view-register',
+      componentProps: { register }
+    })
+  }
+
   getRegister() {
-    let path = `users/${this.user().uid}/registros`;
+    let path = `registros/`;
+    /* let path = `users/${this.user().uid}/registros`; */
 
     this.loading = true;
 
@@ -67,7 +77,8 @@ export class RegistersPage implements OnInit {
   }
 
   async deleteRegister(register: Registers) {
-    let path = `users/${this.user().uid}/registros/${register.id}`
+    let path = `registros/${register.id}`
+    /* let path = `users/${this.user().uid}/registros/${register.id}` */
 
     const loading = await this.utilsService.loading();
     await loading.present();
@@ -128,7 +139,9 @@ export class RegistersPage implements OnInit {
     return this.register.reduce((index, register) => index + register.costo, 0);
   }
 
-  getPendings() {
-    return this.register.reduce((index, register) => index + register.estado !== 'Entregado' ? 1 : 0, 0);
+  getPendings(): number {
+    if (!this.register || this.register.length === 0) return 0;
+    // Filtra los trabajos que están en estado 'revisando' o 'reparando'
+    return this.register.filter(job => job.estado !== 'Entregado').length;
   }
 }

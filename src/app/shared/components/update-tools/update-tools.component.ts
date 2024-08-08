@@ -26,6 +26,7 @@ export class UpdateToolsComponent  implements OnInit {
     garantia: new FormControl('', [Validators.required]),
     caracteristicas: new FormControl('', [Validators.required]),
     vida: new FormControl('', [Validators.required]),
+    fecha: new FormControl('', [Validators.required]),
     img: new FormControl('', [Validators.required]),
   });
 
@@ -47,7 +48,8 @@ export class UpdateToolsComponent  implements OnInit {
   }
 
   async createTools() {
-    let path = `users/${this.user.uid}/herramientas`
+    let path = `herramientas`
+    /* let path = `users/${this.user.uid}/herramientas` */
 
     const loading = await this.utilsService.loading();
     await loading.present();
@@ -88,7 +90,8 @@ export class UpdateToolsComponent  implements OnInit {
   }
 
   async updateTools() {
-    let path = `users/${this.user.uid}/herramientas/${this.tools.id}`
+    let path = `herramientas/${this.tools.id}`
+    /* let path = `users/${this.user.uid}/herramientas/${this.tools.id}` */
 
     const loading = await this.utilsService.loading();
     await loading.present();

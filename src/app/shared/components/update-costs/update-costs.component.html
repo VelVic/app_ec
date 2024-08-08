@@ -1,61 +1,70 @@
-<app-header [isModal]="true" [title]="costs ? 'Actualizar elemento':'Agregar elemento'"></app-header>
+<app-header [isModal]="true" [title]="costs ? 'Actualizar costo':'Agregar costo'"></app-header>
 
-<ion-content>
+<ion-content class="ion-padding custom-content">
 
-  <form [formGroup]="form" (ngSubmit)="submit()" class="ion-padding ion-text-center" (keypress.enter)="submit()">
+  <ion-card class="custom-card">
+    <ion-card-header class="ion-text-center">
+      <ion-avatar *ngIf="form.value.img" class="profile-avatar">
+        <img [src]="form.value.img" />
+      </ion-avatar>
+      <ion-icon class="img-icon" name="image-outline" *ngIf="!form.value.img"></ion-icon>
+    </ion-card-header>
 
-    <ion-avatar *ngIf="form.value.img">
-      <img [src]="form.value.img" />
-    </ion-avatar>
+    <ion-card-content>
+      
+      <form [formGroup]="form" class="ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
 
-    <ion-icon class="img-icon" name="image-outline" *ngIf="!form.value.img"></ion-icon>
+        <ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
+          Tome/Seleccione una foto
+        </ion-button>
 
-    <br>
-    <ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
-      Tome/Seleccione una foto
-    </ion-button>
+        <ion-grid>
 
-    <app-login-input 
-    autocomplete="elemento" 
-    type="text" 
-    label="Elemento"
-    [control]="form.controls.elemento"
-    ></app-login-input>
+          <ion-row>
+            <ion-col size="12">
+              <app-login-input autocomplete="elemento" type="text" label="Elemento"
+                [control]="form.controls.elemento"></app-login-input>
+              <div class="validators" *ngIf="form.controls.elemento.errors && form.controls.elemento.touched">
+                <div *ngIf="form.controls.elemento.errors?.['required']">El elemento es requerido</div>
+                <div *ngIf="form.controls.elemento.errors?.['minlength']">El elemento debe contener 5 caracteres</div>
+              </div>
+            </ion-col>
+          </ion-row>
 
-    <div class="validators" *ngIf="form.controls.elemento.errors && form.controls.elemento.touched">
-      <div *ngIf="form.controls.elemento.errors?.['required']">El elemento es requerido</div>
-      <div *ngIf="form.controls.elemento.errors?.['minlength']">El elemento debe contener 5 caracteres</div>
-    </div>
-
-    <app-login-input 
-    autocomplete="importe" 
-    type="number" 
-    label="Importe"
-    [control]="form.controls.importe"
-    (ionInput)="setNumberInput()"
-    ></app-login-input>
-
-    <div class="validators" *ngIf="form.controls.importe.errors && form.controls.importe .touched">
-      <div *ngIf="form.controls.importe .errors?.['required']">El importe es requerido</div>
-    </div>
+          <ion-row>
+            <ion-col size="12">
+              <app-login-input autocomplete="importe" type="number" label="Importe" [control]="form.controls.importe"
+                (ionInput)="setNumberInput()"></app-login-input>
+              <div class="validators" *ngIf="form.controls.importe.errors && form.controls.importe .touched">
+                <div *ngIf="form.controls.importe .errors?.['required']">El importe es requerido</div>
+              </div>
+            </ion-col>
+          </ion-row>
 
 
-    <app-login-input 
-    autocomplete="fecha" 
-    type="date" 
-    label="Fecha" 
-    [control]="form.controls.fecha"
-    ></app-login-input>
+          <ion-row>
+            <ion-col size="12">
+              <app-login-input autocomplete="fecha" type="date" label="Fecha"
+                [control]="form.controls.fecha"></app-login-input>
+              <div class="validators" *ngIf="form.controls.fecha.errors && form.controls.fecha.touched">
+                <div *ngIf="form.controls.fecha.errors?.['required']">La fecha es requerida</div>
+              </div>
+            </ion-col>
+          </ion-row>
 
-    <div class="validators" *ngIf="form.controls.fecha.errors && form.controls.fecha.touched">
-      <div *ngIf="form.controls.fecha.errors?.['required']">La fecha es requerida</div>
-    </div>
+          <ion-row>
+            <ion-col size="12">
+              <ion-button class="submit" type="submit" mode="ios" [disabled]="form.invalid">
+                {{costs ? 'Actualizar':'Agregar'}}
+                <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
 
-    <ion-button class="submit" type="submit" mode="ios" [disabled]="form.invalid">
-      {{costs ? 'Actualizar':'Agregar'}}
-      <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
-    </ion-button>
+        </ion-grid>
 
-  </form>
+      </form>
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

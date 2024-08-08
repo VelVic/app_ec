@@ -1,3 +1,34 @@
-<p>
-  view-costs works!
-</p>
+<app-header [isModal]="true" title="Información Detallada"></app-header>
+
+<ion-content class="ion-padding custom-content">
+
+  <ion-card class="custom-card">
+    
+    <ion-card-header class="ion-text-center">
+      <ion-avatar *ngIf="form.value.img" class="profile-avatar">
+        <img [src]="form.value.img" />
+      </ion-avatar>
+      <ion-icon class="img-icon" name="image-outline" *ngIf="!form.value.img"></ion-icon>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-sm="6" class="item-title">Elemento</ion-col>
+          <ion-col size="12" size-sm="6" class="item-value">{{ form.value.elemento }}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12" size-sm="6" class="item-title">Importe</ion-col>
+          <ion-col size="12" size-sm="6" class="item-value">{{ form.value.importe | currency: 'MXN' }}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12" size-sm="6" class="item-title">Fecha</ion-col>
+          <ion-col size="12" size-sm="6" class="item-value">{{ form.value.fecha }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

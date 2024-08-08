@@ -6,5 +6,6 @@ export interface Tools {
     garantia: string;
     caracteristicas: string;
     vida: string;
+    fecha: string;
     img: string;
 }
