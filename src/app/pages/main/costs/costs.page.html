@@ -1,4 +1,4 @@
-<app-header [showMenu]="true" title="Costos"></app-header>
+<app-header [showMenu]="true" title="Servicios Corrientes"></app-header>
 
 <ion-content>
 
@@ -12,11 +12,11 @@
     <ion-card mode="ios" class="bgpurple d-flex-center ion-text-center" *ngIf="costs?.length">
       <div>
         <h5>{{ costs.length }}</h5>
-        <p>Elementos</p>
+        <p>Servicios</p>
       </div>
       <div>
         <h5>{{ getBills() | currency: 'MXN' }}</h5>
-        <p>Costo Total</p>
+        <p>Gasto Total</p>
       </div>
     </ion-card>
   </ng-container>

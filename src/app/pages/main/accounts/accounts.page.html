@@ -1,13 +1,70 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>accounts</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [showMenu]="true" title="Crear Cuenta"></app-header>
+<ion-content>
+  <div class="d-flex-center">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">accounts</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <form *ngIf="user()?.tipo === 'admin'" [formGroup]="form" (ngSubmit)="submit()" class="auth-form" (keypress.enter)="submit()">
+
+      <app-logo></app-logo>
+
+      <app-login-input
+      autocomplete="name_su"
+      type="text"
+      label="Nombre"
+      icon="person-outline"
+      [control]="form.controls.name"
+      ></app-login-input>    
+
+      <div class="validators" *ngIf="form.controls.name.errors && form.controls.name.touched">
+        <div *ngIf="form.controls.name.errors?.['required']">El nombre es requerido</div>
+        <div *ngIf="form.controls.name.errors?.['minlength']">Ingrese un nombre mayor a 3 caracteres</div>
+      </div>
+
+      <app-login-input
+      autocomplete="email_su"
+      type="email"
+      label="Correo"
+      icon="mail-outline"
+      [control]="form.controls.email"
+      ></app-login-input>    
+
+      <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched">
+        <div *ngIf="form.controls.email.errors?.['required']">El correo es requerido</div>
+        <div *ngIf="form.controls.email.errors?.['email']">Ingrese un correo válido</div>
+      </div>
+
+      <app-login-input
+      autocomplete="tipo_su"
+      type="text"
+      label="Tipo"
+      icon="people-outline"
+      [control]="form.controls.tipo"
+      ></app-login-input>    
+
+      <div class="validators" *ngIf="form.controls.tipo.errors && form.controls.tipo.touched">
+        <div *ngIf="form.controls.tipo.errors?.['required']">El tipo es requerido</div>
+        <div *ngIf="form.controls.tipo.errors?.['minlength']">Ingresa un tipo mayor a 3 caracteres</div>
+      </div>
+
+      <app-login-input
+      autocomplete="password_su"
+      type="password"
+      label="Contraseña"
+      icon="lock-closed-outline"
+      [control]="form.controls.password"
+      ></app-login-input>    
+
+      <div class="validators" *ngIf="form.controls.password.errors && form.controls.password.touched">
+        <div *ngIf="form.controls.password.errors?.['required']">La contraseña es requerida</div>
+        <div *ngIf="form.controls.password.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres</div>
+      </div>
+
+      <ion-button class="submit" type="submit" expand="block" mode="ios" fill="outline" [disabled]="form.invalid">
+        Registrarse
+      </ion-button>
+
+    </form>
+
+    
+
+  </div>
 </ion-content>

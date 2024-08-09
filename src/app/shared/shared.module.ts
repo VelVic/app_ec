@@ -18,6 +18,7 @@ import { ViewCostsComponent } from './components/view-costs/view-costs.component
 import { UpdateFinanceComponent } from './components/update-finance/update-finance.component';
 import { UpdateProvidersComponent } from './components/update-providers/update-providers.component';
 import { ViewProvidersComponent } from './components/view-providers/view-providers.component';
+import { UpdateAccountsComponent } from './components/update-accounts/update-accounts.component';
 
 
 
@@ -33,6 +34,7 @@ import { ViewProvidersComponent } from './components/view-providers/view-provide
     UpdateCostsComponent,
     UpdateFinanceComponent,
     UpdateProvidersComponent,
+    UpdateAccountsComponent,
 
     ViewEmployeeComponent,
     ViewRegisterComponent,
@@ -52,6 +54,7 @@ import { ViewProvidersComponent } from './components/view-providers/view-provide
     UpdateCostsComponent,
     UpdateFinanceComponent,
     UpdateProvidersComponent,
+    UpdateAccountsComponent,
 
     ViewEmployeeComponent,
     ViewRegisterComponent,
