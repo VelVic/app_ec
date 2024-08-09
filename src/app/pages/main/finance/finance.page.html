@@ -1,4 +1,5 @@
-<app-header [showMenu]="true" title="Finanzas"></app-header>
+<!-- finance.component.html -->
+<app-header [isModal]="true" title="Vista de Finanzas"></app-header>
 
 <ion-content class="ion-padding custom-content">
 
@@ -32,7 +33,7 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="full" class="ion-margin-top">
+  <ion-button (click)="downloadFinancePDF()" expand="full" class="ion-margin-top">
     Descargar PDF
   </ion-button>
 

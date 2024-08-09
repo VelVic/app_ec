@@ -1,0 +1,37 @@
+/* finance.component.scss */
+.custom-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #f4f5f8;
+  }
+  
+  .custom-card {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  ion-grid {
+    --ion-grid-column-padding: 5px;
+    --ion-grid-padding: 0;
+  }
+  
+  ion-row {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  ion-row:last-child {
+    border-bottom: none;
+  }
+  
+  @media (max-width: 767px) {
+    .custom-card {
+      width: 90%;
+      height: auto;
+    }
+  }
+  

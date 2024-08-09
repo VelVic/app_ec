@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PdfService } from 'src/app/services/pdf.service';
 
 @Component({
   selector: 'app-finance',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FinancePage implements OnInit {
 
-  constructor() { }
+  constructor(private pdfService: PdfService) { }
 
-  ngOnInit() {
+  downloadFinancePDF() {
+    this.pdfService.downloadFinancePDF('finance-content', 'Reporte_Financiero');
   }
-
 }

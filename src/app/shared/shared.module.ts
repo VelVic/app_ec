@@ -16,6 +16,8 @@ import { ViewRegisterComponent } from './components/view-register/view-register.
 import { ViewToolsComponent } from './components/view-tools/view-tools.component';
 import { ViewCostsComponent } from './components/view-costs/view-costs.component';
 import { UpdateFinanceComponent } from './components/update-finance/update-finance.component';
+import { UpdateProvidersComponent } from './components/update-providers/update-providers.component';
+import { ViewProvidersComponent } from './components/view-providers/view-providers.component';
 
 
 
@@ -30,12 +32,14 @@ import { UpdateFinanceComponent } from './components/update-finance/update-finan
     UpdateToolsComponent,
     UpdateCostsComponent,
     UpdateFinanceComponent,
+    UpdateProvidersComponent,
 
     ViewEmployeeComponent,
     ViewRegisterComponent,
     ViewInventoryComponent,
     ViewToolsComponent,
     ViewCostsComponent,
+    ViewProvidersComponent
   ],
   exports: [
     HeaderComponent,
@@ -47,12 +51,14 @@ import { UpdateFinanceComponent } from './components/update-finance/update-finan
     UpdateToolsComponent,
     UpdateCostsComponent,
     UpdateFinanceComponent,
+    UpdateProvidersComponent,
 
     ViewEmployeeComponent,
     ViewRegisterComponent,
     ViewInventoryComponent,
     ViewToolsComponent,
     ViewCostsComponent,
+    ViewProvidersComponent,
 
     FormsModule,
     ReactiveFormsModule

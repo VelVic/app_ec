@@ -63,9 +63,15 @@ export class MainPage implements OnInit {
       color:'light'
     },
     {
-      title: 'Crear Cuenta',
-      url: '/main/create-account',
+      title: 'Cuentas de usuario',
+      url: '/main/accounts',
       icon: 'person-add-outline',
+      color:'light'
+    },
+    {
+      title: 'Proveedores',
+      url: '/main/providers',
+      icon: 'library-outline',
       color:'light'
     },
   ];

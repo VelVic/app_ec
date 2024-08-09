@@ -25,3 +25,20 @@
   color: #007bff;
   margin-bottom: 10px;
 }
+
+.centered-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column; /* Alinea el ícono y el texto en columna */
+
+  ion-icon {
+    margin-bottom: 8px; /* Espacio entre el ícono y el texto */
+  }
+
+  .name {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}

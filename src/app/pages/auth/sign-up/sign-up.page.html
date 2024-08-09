@@ -8,7 +8,7 @@
       <app-logo></app-logo>
 
       <app-login-input
-      autocomplete="name"
+      autocomplete="name_su"
       type="text"
       label="Nombre"
       icon="person-outline"
@@ -21,7 +21,7 @@
       </div>
 
       <app-login-input
-      autocomplete="email"
+      autocomplete="email_su"
       type="email"
       label="Correo"
       icon="mail-outline"
@@ -34,8 +34,8 @@
       </div>
 
       <app-login-input
-      autocomplete="tipo"
-      type="tipo"
+      autocomplete="tipo_su"
+      type="text"
       label="Tipo"
       icon="people-outline"
       [control]="form.controls.tipo"
@@ -47,6 +47,7 @@
       </div>
 
       <app-login-input
+      autocomplete="password_su"
       type="password"
       label="Contraseña"
       icon="lock-closed-outline"

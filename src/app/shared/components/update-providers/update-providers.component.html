@@ -1,3 +1,100 @@
-<p>
-  update-providers works!
-</p>
+<app-header [isModal]="true" [title]="provider ? 'Actualizar proveedor':'Agregar proveedor'"></app-header>
+
+<ion-content class="ion-padding custom-content">
+
+  <ion-card class="custom-card">
+    <ion-card-header class="ion-text-center">
+      <ion-avatar *ngIf="form.value.img" class="profile-avatar">
+        <img [src]="form.value.img" />
+      </ion-avatar>
+      <ion-icon class="img-icon" name="image-outline" *ngIf="!form.value.img"></ion-icon>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" class="ion-padding ion-text-center" (keypress.enter)="submit()">
+
+        <ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
+          Tome/Seleccione una foto
+        </ion-button>
+
+        <ion-grid fixed>
+
+          <ion-row>
+            <ion-col size="12">
+              <app-login-input autocomplete="nombre_r" type="text" label="Nombre del Proveedor"
+                [control]="form.controls.nombre"></app-login-input>
+              <div class="validators"
+                *ngIf="form.controls.nombre.errors && form.controls.nombre.touched">
+                <div *ngIf="form.controls.nombre.errors?.['required']">El nombre es requerido</div>
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <app-login-input autocomplete="telefono_r" type="text" label="Teléfono del Proveedor"
+                [control]="form.controls.telefono"></app-login-input>
+              <div class="validators"
+                *ngIf="form.controls.telefono.errors && form.controls.telefono.touched">
+                <div *ngIf="form.controls.telefono.errors?.['required']">El teléfono es requerido</div>
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <app-login-input autocomplete="email_r" type="email" label="Email del Proveedor"
+                [control]="form.controls.email"></app-login-input>
+              <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched">
+                <div *ngIf="form.controls.email.errors?.['required']">El correo electrónico es requerido</div>
+                <div *ngIf="form.controls.email.errors?.['email']">El correo electrónico no es válido</div>
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <app-login-input autocomplete="notas_r" type="text" label="Notas Adicionales"
+                [control]="form.controls.notas"></app-login-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <app-login-input autocomplete="fecha_r" type="date" label="Fecha de Registro"
+                [control]="form.controls.fecha"></app-login-input>
+              <div class="validators" *ngIf="form.controls.fecha.errors && form.controls.fecha.touched">
+                <div *ngIf="form.controls.fecha.errors?.['required']">La fecha es requerida</div>
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <app-login-input autocomplete="activo_r" type="text" label="Estado activo: Si/No"
+                [control]="form.controls.activo"></app-login-input>
+              <div class="validators"
+                *ngIf="form.controls.activo.errors && form.controls.activo.touched">
+                <div *ngIf="form.controls.activo.errors?.['required']">El estado es requerido</div>
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-button class="submit" type="submit" mode="ios" [disabled]="form.invalid">
+                {{provider ? 'Actualizar':'Agregar'}}
+                <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

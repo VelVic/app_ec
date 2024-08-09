@@ -42,14 +42,14 @@
         </ion-item>
 
         <ion-item-options>
-          <ion-item-option (click)="addUpdateInventory(inventario)" color="primary" *ngIf="user()?.tipo === 'admin'">
-            <ion-icon class="option-btn" name="create-outline"></ion-icon>
+          <ion-item-option (click)="addUpdateInventory(inventario)" color="secondary" *ngIf="user()?.tipo === 'admin'">
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
           </ion-item-option>
-          <ion-item-option (click)="viewInventory(inventario)" color="success">
-            <ion-icon class="option-btn" name="document-text-outline"></ion-icon>
+          <ion-item-option (click)="viewInventory(inventario)" color="primary">
+            <ion-icon slot="icon-only" name="document-text-outline"></ion-icon>
           </ion-item-option>
           <ion-item-option (click)="confirmDeleteInventory(inventario)" color="danger" *ngIf="user()?.tipo === 'admin'">
-            <ion-icon class="option-btn" name="trash-outline"></ion-icon>
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
           </ion-item-option>
         </ion-item-options>
 
