@@ -20,8 +20,6 @@ import { UpdateProvidersComponent } from './components/update-providers/update-p
 import { ViewProvidersComponent } from './components/view-providers/view-providers.component';
 import { UpdateAccountsComponent } from './components/update-accounts/update-accounts.component';
 
-
-
 @NgModule({
   declarations: [
     HeaderComponent,

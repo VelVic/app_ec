@@ -20,31 +20,31 @@ export class MainPage implements OnInit {
     {
       title: 'Clientes',
       url: '/main/registers',
-      icon: 'clipboard-outline',
+      icon: 'people',
       color:'light'
     },
     {
       title: 'Productos',
       url: '/main/inventory',
-      icon: 'albums-outline',
+      icon: 'cube',
       color:'light'
     },
     {
       title: 'Herramientas',
       url: '/main/tools',
-      icon: 'hammer-outline',
+      icon: 'construct',
       color:'light'
     },
     {
       title: 'Servicios (gastos)',
       url: '/main/costs',
-      icon: 'wallet-outline',
+      icon: 'pricetags',
       color:'light'
     },
     {
       title: 'Perfil',
       url: '/main/profile',
-      icon: 'id-card-outline',
+      icon: 'person',
       color:'light'
     },
   ];
@@ -53,25 +53,25 @@ export class MainPage implements OnInit {
     {
       title: 'Finanzas',
       url: '/main/finance',
-      icon: 'cash-outline',
+      icon: 'cash',
       color:'light'
     },
     {
       title: 'Empleados',
       url: '/main/home',
-      icon: 'people-outline',
+      icon: 'people',
       color:'light'
     },
     {
       title: 'Crear Cuenta',
       url: '/main/accounts',
-      icon: 'person-add-outline',
+      icon: 'person-add',
       color:'light'
     },
     {
       title: 'Proveedores',
       url: '/main/providers',
-      icon: 'library-outline',
+      icon: 'library',
       color:'light'
     },
   ];

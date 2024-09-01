@@ -1,4 +1,4 @@
-<app-header [showMenu]="true" title="Servicios Corrientes"></app-header>
+<app-header [showMenu]="true" title="Servicios"></app-header>
 
 <ion-content>
 
@@ -55,8 +55,8 @@
 
   <!-- Mensaje de Vacío -->
   <div class="empty" *ngIf="!loading && !costs.length">
-    <ion-icon name="diamond-outline"></ion-icon>
-    <h3>No hay costos disponibles</h3>
+    <ion-icon name="pricetags-outline"></ion-icon>
+    <h3>No hay servicios disponibles</h3>
   </div>
 
   <!-- Skeleton Loader para la carga de datos -->

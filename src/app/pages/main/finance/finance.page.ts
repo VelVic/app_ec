@@ -1,5 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { map } from 'rxjs';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil, map } from 'rxjs/operators';
 import { Costs } from 'src/app/models/costs.models';
 import { Employees } from 'src/app/models/employees.model';
 import { Inventory } from 'src/app/models/inventory.model';
@@ -14,27 +15,33 @@ import { UtilsService } from 'src/app/services/utils.service';
   templateUrl: './finance.page.html',
   styleUrls: ['./finance.page.scss'],
 })
-export class FinancePage implements OnInit {
+export class FinancePage implements OnInit, OnDestroy {
+
+  private destroy$ = new Subject<void>();
 
   utilsService = inject(UtilsService);
   firebaseService = inject(FirebaseService);
-  loading: boolean = false;
+  pdfService = inject(PdfService);
+
+  loading = false;
+  isPrinting = false;
 
   costs: Costs[] = [];
   employees: Employees[] = [];
   inventory: Inventory[] = [];
   provider: Providers[] = [];
   
-  constructor(private pdfService: PdfService) { }
-
   ngOnInit() {
+    this.loadData();
   }
 
   ionViewWillEnter() {
-    this.getEmployee();
-    this.getCosts();
-    this.getInventory();
-    this.getProvider();
+    this.loadData();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   user(): User {
@@ -42,100 +49,96 @@ export class FinancePage implements OnInit {
   }
 
   downloadFinancePDF() {
+    this.isPrinting = true;
+    setTimeout(() => {
+      this.generatePDF();
+      this.isPrinting = false;
+    }, 1000);
+  }
+
+  generatePDF() {
     this.pdfService.downloadPDF('finance-content', 'Reporte_Financiero');
   }
 
-  getCosts() {
-    let path = `costos/`;
-    /* let path = `users/${this.user().uid}/costos`; */
-
+  private loadData() {
     this.loading = true;
-
-    let sub = this.firebaseService.getCollectionCosts(path)
-      .snapshotChanges().pipe(
-        map(changes => changes.map(c => ({
-          id: c.payload.doc.id,
-          ...c.payload.doc.data()
-        })))
-      ).subscribe({
-        next: (resp: any) => {
-          this.costs = resp
-
-          this.loading = false;
-          sub.unsubscribe();
-        }
-      })
+    this.getCosts();
+    this.getEmployee();
+    this.getInventory();
+    this.getProvider();
   }
 
-  getEmployee() {
-    let path = `empleados/`;
-    /* let path = `users/${this.user().uid}/empleados`; */
-
-    this.loading = true;
-
-    let sub = this.firebaseService.getCollectionData(path)
+  private getCosts() {
+    const path = `costos/`;
+    this.firebaseService.getCollectionCosts(path)
       .snapshotChanges().pipe(
         map(changes => changes.map(c => ({
           id: c.payload.doc.id,
           ...c.payload.doc.data()
-        })))
+        }))),
+        takeUntil(this.destroy$)
       ).subscribe({
         next: (resp: any) => {
-          this.employees = resp
-
+          this.costs = resp;
           this.loading = false;
-          sub.unsubscribe();
         }
-      })
+      });
   }
 
-  getInventory() {
-    let path = `inventario/`;
-    /* let path = `users/${this.user().uid}/inventario`; */ // Por si queremos dividir el inventario por usuario
-
-    this.loading = true;
-
-    let sub = this.firebaseService.getCollectionInventory(path)
+  private getEmployee() {
+    const path = `empleados/`;
+    this.firebaseService.getCollectionData(path)
       .snapshotChanges().pipe(
         map(changes => changes.map(c => ({
           id: c.payload.doc.id,
           ...c.payload.doc.data()
-        })))
+        }))),
+        takeUntil(this.destroy$)
       ).subscribe({
         next: (resp: any) => {
-          this.inventory = resp
-
+          this.employees = resp;
           this.loading = false;
-          sub.unsubscribe();
         }
-      })
+      });
   }
 
-  getProvider() {
-    let path = `proveedores/`;
-    /* let path = `users/${this.user().uid}/registros`; */
-
-    this.loading = true;
-
-    let sub = this.firebaseService.getCollectionRegister(path)
+  private getInventory() {
+    const path = `inventario/`;
+    this.firebaseService.getCollectionInventory(path)
       .snapshotChanges().pipe(
         map(changes => changes.map(c => ({
           id: c.payload.doc.id,
           ...c.payload.doc.data()
-        })))
+        }))),
+        takeUntil(this.destroy$)
       ).subscribe({
         next: (resp: any) => {
-          this.provider = resp
-
+          this.inventory = resp;
           this.loading = false;
-          sub.unsubscribe();
         }
-      })
+      });
+  }
+
+  private getProvider() {
+    const path = `proveedores/`;
+    this.firebaseService.getCollectionRegister(path)
+      .snapshotChanges().pipe(
+        map(changes => changes.map(c => ({
+          id: c.payload.doc.id,
+          ...c.payload.doc.data()
+        }))),
+        takeUntil(this.destroy$)
+      ).subscribe({
+        next: (resp: any) => {
+          this.provider = resp;
+          this.loading = false;
+        }
+      });
   }
 
   doRefresh(event: any) {
     setTimeout(() => {
-      this.getCosts();
+      this.loadData();
       event.target.complete();
     }, 1000);
   }

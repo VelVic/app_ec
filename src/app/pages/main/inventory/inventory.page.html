@@ -1,4 +1,4 @@
-<app-header [showMenu]="true" title="Productos en Inventario"></app-header>
+<app-header [showMenu]="true" title="Productos"></app-header>
 
 <ion-content>
 
@@ -78,8 +78,8 @@
 
   <!-- Mensaje de Vacío -->
   <div class="empty" *ngIf="!loading && !inventory.length">
-    <ion-icon name="diamond-outline"></ion-icon>
-    <h3>No hay inventario disponible</h3>
+    <ion-icon name="cube-outline"></ion-icon>
+    <h3>No hay productos disponibles</h3>
   </div>
 
   <!-- Botón Flotante -->
