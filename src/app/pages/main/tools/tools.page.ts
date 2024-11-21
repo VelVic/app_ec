@@ -77,63 +77,74 @@ export class ToolsPage implements OnInit {
   }
 
   async deleteTools(tools: Tools) {
-    let path = `herramientas/${tools.id}`
-    /* let path = `users/${this.user().uid}/herramientas/${tools.id}` */
-
+    const path = `herramientas/${tools.id}`;
     const loading = await this.utilsService.loading();
-    await loading.present();
-
-    let imgPath = await this.firebaseService.getFilePath(tools.img);
-    await this.firebaseService.deleteFile(imgPath);
-
-    this.firebaseService.deleteDocument(path)
-      .then(async resp => {
-
-        //Actualizar la lista de empleados
-        this.tools = this.tools.filter(e => e.id !== tools.id);
-
-        this.utilsService.dismissModal({ succes: true });
-
-        this.utilsService.presentToast({
-          message: 'Herramienta eliminada correctamente',
-          duration: 2500,
-          color: 'success',
-          position: 'bottom',
-          icon: 'checkmark-circle-outline'
-        })
-        this.utilsService.dismissModal(true);
-      }).catch(error => {
-        console.log(error);
-        this.utilsService.presentToast({
-          message: error.message,
-          duration: 2500,
-          color: 'danger',
-          position: 'bottom',
-          icon: 'alert-circle-outline'
-        })
-      }).finally(() => {
-        loading.dismiss();
+  
+    try {
+      await loading.present();
+  
+      // Verificar y eliminar la imagen asociada si existe
+      if (tools.img) {
+        const imgPath = await this.firebaseService.getFilePath(tools.img);
+        await this.firebaseService.deleteFile(imgPath);
+      }
+  
+      // Eliminar el documento de herramientas
+      await this.firebaseService.deleteDocument(path);
+  
+      // Actualizar la lista local de herramientas
+      this.tools = this.tools.filter(item => item.id !== tools.id);
+  
+      // Mostrar mensaje de éxito
+      await this.utilsService.presentToast({
+        message: 'Herramienta eliminada correctamente',
+        duration: 2500,
+        color: 'success',
+        position: 'bottom',
+        icon: 'checkmark-circle-outline',
       });
+  
+      // Cerrar el modal indicando éxito
+      this.utilsService.dismissModal({ success: true });
+  
+    } catch (error) {
+      // Manejar errores y mostrar mensajes
+      console.error('Error al eliminar herramienta:', error);
+  
+      await this.utilsService.presentToast({
+        message: error.message || 'Ocurrió un error al eliminar la herramienta',
+        duration: 2500,
+        color: 'danger',
+        position: 'bottom',
+        icon: 'alert-circle-outline',
+      });
+  
+    } finally {
+      // Asegurar cierre del spinner
+      await loading.dismiss();
+    }
   }
-
+  
   async confirmDeleteTools(tools: Tools) {
-    this.utilsService.presentAlert({
+    await this.utilsService.presentAlert({
       header: 'Eliminar herramienta',
       message: '¿Estás seguro de eliminar esta herramienta?',
       mode: 'ios',
       buttons: [
         {
-          text: 'Cancelar'
-        }
-        , {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
           text: 'Eliminar',
           role: 'destructive',
-          handler: () => {
-            this.deleteTools(tools);
-          }
-        }]
-    })
-  }
+          handler: async () => {
+            await this.deleteTools(tools);
+          },
+        },
+      ],
+    });
+  }  
 
   getBills() {
     return this.tools.reduce((index, tools) => index + tools.costo, 0);

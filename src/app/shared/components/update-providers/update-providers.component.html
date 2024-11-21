@@ -1,18 +1,19 @@
-<app-header [isModal]="true" [title]="provider ? 'Actualizar proveedor':'Agregar proveedor'"></app-header>
+<app-header [isModal]="true" [title]="provider ? 'Actualizar proveedor' : 'Agregar proveedor'"></app-header>
 
 <ion-content class="ion-padding custom-content">
 
   <ion-card class="custom-card">
-    <ion-card-header class="ion-text-center">
+
+    <ion-card-header>
       <ion-avatar *ngIf="form.value.img" class="profile-avatar">
         <img [src]="form.value.img" />
       </ion-avatar>
       <ion-icon class="img-icon" name="image-outline" *ngIf="!form.value.img"></ion-icon>
     </ion-card-header>
 
-    <ion-card-content>
+    <ion-card-content class="ion-padding ion-text-center">
 
-      <form [formGroup]="form" (ngSubmit)="submit()" class="ion-padding ion-text-center" (keypress.enter)="submit()">
+      <form [formGroup]="form" (ngSubmit)="submit()">
 
         <ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
           Tome/Seleccione una foto
@@ -22,79 +23,59 @@
 
           <ion-row>
             <ion-col size="12">
-              <app-login-input autocomplete="nombre_r" type="text" label="Nombre del Proveedor"
-                [control]="form.controls.nombre"></app-login-input>
-              <div class="validators"
-                *ngIf="form.controls.nombre.errors && form.controls.nombre.touched">
-                <div *ngIf="form.controls.nombre.errors?.['required']">El nombre es requerido</div>
-              </div>
+              <ion-input type="text" label="Nombre del Proveedor" formControlName="nombre"
+                labelPlacement="floating" fill="solid" errorText="Ingresa un nombre"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
-              <app-login-input autocomplete="telefono_r" type="text" label="Teléfono del Proveedor"
-                [control]="form.controls.telefono"></app-login-input>
-              <div class="validators"
-                *ngIf="form.controls.telefono.errors && form.controls.telefono.touched">
-                <div *ngIf="form.controls.telefono.errors?.['required']">El teléfono es requerido</div>
-              </div>
+              <ion-input type="tel" label="Teléfono del Proveedor" formControlName="telefono" labelPlacement="floating"
+                fill="solid" errorText="Ingresa un teléfono"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
-              <app-login-input autocomplete="email_r" type="email" label="Email del Proveedor"
-                [control]="form.controls.email"></app-login-input>
-              <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched">
-                <div *ngIf="form.controls.email.errors?.['required']">El correo electrónico es requerido</div>
-                <div *ngIf="form.controls.email.errors?.['email']">El correo electrónico no es válido</div>
-              </div>
+              <ion-input type="email" label="Email del Proveedor" formControlName="email" labelPlacement="floating"
+                fill="solid" email errorText="Ingresa un correo válido"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
-              <app-login-input autocomplete="notas_r" type="text" label="Notas Adicionales"
-                [control]="form.controls.notas"></app-login-input>
+              <ion-input type="text" label="Notas" formControlName="notas" labelPlacement="floating" fill="solid"
+                errorText="Ingresa minimo un caracter"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
-              <app-login-input autocomplete="fecha_r" type="date" label="Fecha de Registro"
-                [control]="form.controls.fecha"></app-login-input>
-              <div class="validators" *ngIf="form.controls.fecha.errors && form.controls.fecha.touched">
-                <div *ngIf="form.controls.fecha.errors?.['required']">La fecha es requerida</div>
-              </div>
+              <ion-input type="date" label="Fecha de registro" formControlName="fecha" labelPlacement="floating"
+                fill="solid" errorText="Ingresa una fecha"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
-              <app-login-input autocomplete="activo_r" type="text" label="Estado activo: Si/No"
-                [control]="form.controls.activo"></app-login-input>
-              <div class="validators"
-                *ngIf="form.controls.activo.errors && form.controls.activo.touched">
-                <div *ngIf="form.controls.activo.errors?.['required']">El estado es requerido</div>
-              </div>
+              <ion-select label="Estado" formControlName="activo" labelPlacement="floating" interface="popover"
+                fill="solid" value="Si">
+                <ion-select-option selected value="Si">Activo</ion-select-option>
+                <ion-select-option value="No">Inactivo</ion-select-option>
+              </ion-select>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
               <ion-button class="submit" type="submit" mode="ios" [disabled]="form.invalid">
-                {{provider ? 'Actualizar':'Agregar'}}
+                {{ provider ? 'Actualizar' : 'Agregar' }}
                 <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
               </ion-button>
             </ion-col>
           </ion-row>
-
         </ion-grid>
-
-
       </form>
     </ion-card-content>
   </ion-card>
-
 </ion-content>

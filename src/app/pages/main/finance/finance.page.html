@@ -1,103 +1,176 @@
 <app-header [showMenu]="true" title="Reporte de finanzas"></app-header>
 
-<ion-content class="ion-padding custom-content">
+<ion-content class="ion-padding custom-content mi-clase-de-fondo">
 
   <!-- Refrescador -->
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
+  <!-- Mensaje de Vacío -->
+  <div class="empty" *ngIf="!loading && !costs.length && !employees.length && !inventory.length && !providers.length">
+    <ion-icon name="cash-outline"></ion-icon>
+    <h3>No hay reporte de finanzas disponible</h3>
+  </div>
+
   <ng-container *ngIf="!loading && user()?.tipo === 'admin'">
-    <ion-card>
+    <ion-card id="content" *ngIf="costs.length || employees.length || inventory.length || providers.length">
+      <div class="overlay-container">
+        <div class="content-overlay">
 
-      <ion-list id="finance-content" with="100px">
-
-        <!-- Servicios -->
-        <ng-container *ngIf="costs.length">
-          <ion-card-header>
-            <ion-card-title>Servicios</ion-card-title>
-          </ion-card-header>
-
-          <ion-item-sliding class="product-item" *ngFor="let costo of costs" [ngClass]="{'no-slide': isPrinting}">
-            <ion-item>
-              <ion-label>
-                <div class="name">{{ costo.elemento }}</div>
-                <div class="data">
-                  <strong>Fecha: </strong>{{ costo.fecha }} <br>
-                  <strong>Importe: </strong>{{ costo.importe | currency: 'MXN' }} <br>
-                </div>
-              </ion-label>
-            </ion-item>
-          </ion-item-sliding>
-        </ng-container>
-
-        <!-- Empleados -->
         <ng-container *ngIf="employees.length">
           <ion-card-header>
             <ion-card-title>Empleados</ion-card-title>
           </ion-card-header>
-
-          <ion-item-sliding class="product-item" *ngFor="let empleado of employees" [ngClass]="{'no-slide': isPrinting}">
-            <ion-item>
-              <ion-label>
-                <div class="name">{{ empleado.name }} {{ empleado.lastname }}</div>
-                <div class="data">
-                  <strong>Salario: </strong> {{ empleado.salario | currency: 'MXN' }} <br>
-                  <strong>Cargo: </strong>{{ empleado.cargo }} <br>
-                </div>
-              </ion-label>
-            </ion-item>
-          </ion-item-sliding>
+          <table class="table table-info table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Salario</th>
+                <th scope="col">Cargo</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let empleado of employees, let i = index">
+              <tr>
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ empleado.name }}</td>
+                <td>{{ empleado.lastname }}</td>
+                <td>{{ empleado.salario | currency: 'MXN' }}</td>
+                <td>{{ empleado.cargo }}</td>
+              </tr>
+            </tbody>
+          </table>
         </ng-container>
 
-        <!-- Inventario -->
-        <ng-container *ngIf="inventory.length">
-          <ion-card-header>
-            <ion-card-title>Inventario</ion-card-title>
-          </ion-card-header>
-
-          <ion-item-sliding class="product-item" *ngFor="let inventario of inventory" [ngClass]="{'no-slide': isPrinting}">
-            <ion-item>
-              <ion-label>
-                <div class="name">{{ inventario.elemento }}</div>
-                <div class="data">
-                  <strong>Fecha:</strong> {{ inventario.fecha }} <br>
-                  <strong>Tipo:</strong> {{ inventario.tipo }} <br>
-                  <strong>Cantidad:</strong> {{ inventario.cantidad }} <br>
-                  <strong>Modelo:</strong> {{ inventario.modelo }} <br>
-                  <strong>Costo:</strong> {{ inventario.costo | currency: 'MXN' }} <br>
-                </div>
-              </ion-label>
-            </ion-item>
-          </ion-item-sliding>
-        </ng-container>
-
-        <!-- Proveedores -->
-        <ng-container *ngIf="provider.length">
+        <ng-container *ngIf="providers.length">
           <ion-card-header>
             <ion-card-title>Proveedores</ion-card-title>
           </ion-card-header>
-
-          <ion-item-sliding class="product-item" *ngFor="let proveedores of provider" [ngClass]="{'no-slide': isPrinting}">
-            <ion-item>
-              <ion-label>
-                <div class="name">{{ proveedores.nombre }}</div>
-                <div class="data">
-                  <strong>Fecha de Ingreso: </strong> {{ proveedores.fecha }}<br>
-                  <strong>Teléfono: </strong>{{ proveedores.telefono }} <br>
-                  <strong>Notas: </strong> {{ proveedores.notas }} <br>
-                </div>
-              </ion-label>
-            </ion-item>
-          </ion-item-sliding>
+          <table class="table table-info table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Activo</th>
+                <th scope="col">Fecha Registro</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let proveedor of providers, let i = index">
+              <tr>
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ proveedor.nombre }}</td>
+                <td>{{ proveedor.activo }}</td>
+                <td>{{ proveedor.fecha }}</td>
+              </tr>
+            </tbody>
+          </table>
         </ng-container>
 
-      </ion-list>
+        <ng-container *ngIf="register.length">
+          <ion-card-header>
+            <ion-card-title>Clientes</ion-card-title>
+          </ion-card-header>
+          <table class="table table-info table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Registro</th>
+                <th scope="col">Encargado</th>
+                <th scope="col">Costo</th>
+                <th scope="col">Fecha Registro</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let cliente of register, let i = index">
+              <tr>
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ cliente.registro }}</td>
+                <td>{{ cliente.encargado }}</td>
+                <td>{{ cliente.costo | currency: 'MXN' }}</td>
+                <td>{{ cliente.fecha }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
 
-      <!-- Mensaje de Vacío -->
-      <div class="empty" *ngIf="!costs.length && !employees.length && !inventory.length && !provider.length">
-        <ion-icon name="cash-outline"></ion-icon>
-        <h3>No hay un reporte disponible</h3>
+        <ng-container *ngIf="inventory.length">
+          <ion-card-header>
+            <ion-card-title>Productos</ion-card-title>
+          </ion-card-header>
+          <table class="table table-info table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Fecha Registro</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let inventario of inventory, let i = index">
+              <tr>
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ inventario.elemento }}</td>
+                <td>{{ inventario.costo| currency: 'MXN' }}</td>
+                <td>{{ inventario.fecha }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+
+        <ng-container *ngIf="tools.length">
+          <ion-card-header>
+            <ion-card-title>Herramientas</ion-card-title>
+          </ion-card-header>
+          <table class="table table-info table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Herramienta</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Costo individual</th>
+                <th scope="col">Costo total</th>
+                <th scope="col">Fecha Registro</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let herr of tools, let i = index">
+              <tr>
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ herr.elemento }}</td>
+                <td>{{ herr.cantidad }}</td>
+                <td>{{ herr.costo | currency: 'MXN' }}</td>
+                <td>{{ herr.costo * herr.cantidad| currency: 'MXN' }}</td>
+                <td>{{ herr.fecha }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+
+        <ng-container *ngIf="costs.length">
+          <ion-card-header>
+            <ion-card-title>Servicios</ion-card-title>
+          </ion-card-header>
+          <table class="table table-info table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Costo</th>
+                <th scope="col">Fecha Registro</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let costo of costs, let i = index">
+              <tr>
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ costo.elemento }}</td>
+                <td>{{ costo.importe | currency: 'MXN' }}</td>
+                <td>{{ costo.fecha }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+
+        </div>
       </div>
 
       <!-- Skeleton Loader para la carga de datos -->
@@ -118,7 +191,7 @@
 
   <!-- Botón Flotante para Descargar PDF -->
   <ion-fab *ngIf="user()?.tipo === 'admin'" vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="downloadFinancePDF()" color="secondary">
+    <ion-fab-button (click)="generatePDF()" color="secondary">
       <ion-icon name="download"></ion-icon>
     </ion-fab-button>
   </ion-fab>

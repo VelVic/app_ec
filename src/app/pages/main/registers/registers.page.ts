@@ -77,63 +77,74 @@ export class RegistersPage implements OnInit {
   }
 
   async deleteRegister(register: Registers) {
-    let path = `registros/${register.id}`
-    /* let path = `users/${this.user().uid}/registros/${register.id}` */
-
+    const path = `registros/${register.id}`;
     const loading = await this.utilsService.loading();
-    await loading.present();
-
-    let imgPath = await this.firebaseService.getFilePath(register.img);
-    await this.firebaseService.deleteFile(imgPath);
-
-    this.firebaseService.deleteDocument(path)
-      .then(async resp => {
-
-        //Actualizar la lista de empleados
-        this.register = this.register.filter(e => e.id !== register.id);
-
-        this.utilsService.dismissModal({ succes: true });
-
-        this.utilsService.presentToast({
-          message: 'Registro eliminado correctamente',
-          duration: 2500,
-          color: 'success',
-          position: 'bottom',
-          icon: 'checkmark-circle-outline'
-        })
-        this.utilsService.dismissModal(true);
-      }).catch(error => {
-        console.log(error);
-        this.utilsService.presentToast({
-          message: error.message,
-          duration: 2500,
-          color: 'danger',
-          position: 'bottom',
-          icon: 'alert-circle-outline'
-        })
-      }).finally(() => {
-        loading.dismiss();
+  
+    try {
+      await loading.present();
+  
+      // Verificar si hay una imagen asociada y eliminarla
+      if (register.img) {
+        const imgPath = await this.firebaseService.getFilePath(register.img);
+        await this.firebaseService.deleteFile(imgPath);
+      }
+  
+      // Eliminar el documento del registro
+      await this.firebaseService.deleteDocument(path);
+  
+      // Actualizar la lista local de registros
+      this.register = this.register.filter(existingRegister => existingRegister.id !== register.id);
+  
+      // Mostrar mensaje de éxito
+      await this.utilsService.presentToast({
+        message: 'Cliente eliminado correctamente',
+        duration: 2500,
+        color: 'success',
+        position: 'bottom',
+        icon: 'checkmark-circle-outline',
       });
+  
+      // Cerrar el modal con éxito
+      this.utilsService.dismissModal({ success: true });
+  
+    } catch (error) {
+      // Manejo de errores
+      console.error('Error al eliminar el cliente:', error);
+  
+      this.utilsService.presentToast({
+        message: error.message || 'Ocurrió un error al eliminar el cliente',
+        duration: 2500,
+        color: 'danger',
+        position: 'bottom',
+        icon: 'alert-circle-outline',
+      });
+  
+    } finally {
+      // Siempre ocultar el spinner de carga
+      await loading.dismiss();
+    }
   }
-
+  
   async confirmDeleteRegister(register: Registers) {
-    this.utilsService.presentAlert({
-      header: 'Eliminar registro',
-      message: '¿Estás seguro de eliminar este registro?',
+    await this.utilsService.presentAlert({
+      header: 'Eliminar cliente',
+      message: '¿Estás seguro de eliminar este cliente?',
       mode: 'ios',
       buttons: [
         {
-          text: 'Cancelar'
-        }
-        , {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
           text: 'Eliminar',
           role: 'destructive',
-          handler: () => {
-            this.deleteRegister(register);
-          }
-        }]
-    })
-  }
+          handler: async () => {
+            await this.deleteRegister(register);
+          },
+        },
+      ],
+    });
+  }  
 
   getBills() {
     return this.register.reduce((index, register) => index + register.costo, 0);

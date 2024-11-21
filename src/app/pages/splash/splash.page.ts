@@ -13,7 +13,7 @@ export class SplashPage implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.router.navigate(['/entrance']);
+      this.router.navigate(['/auth']);
     }, 3500);
   }
 

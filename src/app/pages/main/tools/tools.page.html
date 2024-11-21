@@ -25,7 +25,7 @@
   <ng-container *ngIf="!loading">
     <ion-list>
       <ion-item-sliding class="product-item" *ngFor="let herramienta of tools">
-        <ion-item>
+        <ion-item detail="true" detail-icon="caret-forward-outline">
           <ion-avatar slot="start">
             <img [src]="herramienta.img" alt="Imagen de herramienta">
           </ion-avatar>
@@ -34,9 +34,6 @@
             <div class="data">
               <strong>Costo: </strong>{{ herramienta.costo | currency: 'MXN' }} <br>
               <strong>Cantidad: </strong>{{ herramienta.cantidad }} <br>
-              <strong>Garantía: </strong> {{ herramienta.garantia }} <br>
-              <strong>Descripción: </strong>{{ herramienta.caracteristicas }} <br>
-              <strong>Vida: </strong>{{ herramienta.vida }} meses<br>
               <strong>Fecha: </strong>{{ herramienta.fecha }}
             </div>
           </ion-label>
@@ -84,7 +81,7 @@
 
   <!-- Botón flotante para añadir o actualizar herramientas -->
   <ion-fab *ngIf="user()?.tipo === 'admin'" vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="addUpdateTools()">
+    <ion-fab-button (click)="addUpdateTools()" color="secondary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

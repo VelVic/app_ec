@@ -1,0 +1,66 @@
+<app-header [isModal]="true" [title]="'Crear cuenta'"></app-header>
+
+<ion-content class="ion-padding custom-content">
+
+  <ion-card class="custom-card">
+
+    <ion-card-header>
+      <ion-avatar class="profile-avatar">
+        <!-- Si 'form.value.img' tiene una imagen, la muestra. Si no, muestra la imagen por defecto -->
+        <img [src]="form.value.img || 'assets/img/icono_ec.png'" alt="Avatar" />
+      </ion-avatar>
+    </ion-card-header>
+
+    <ion-card-content class="ion-padding ion-text-center">
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <ion-grid fixed>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-input type="text" label="Nombre" labelPlacement="floating" fill="solid" errorText="Ingresa un nombre"
+                formControlName="name"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-input type="email" label="Correo" labelPlacement="floating" fill="solid"
+                errorText="Ingresa un correo" formControlName="email"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-select label="Tipo" formControlName="tipo" labelPlacement="floating" interface="popover"
+                fill="solid">
+                <ion-select-option selected value="admin">Administrador</ion-select-option>
+                <ion-select-option value="user">Empleado</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-input type="text" label="Contraseña" labelPlacement="floating" fill="solid"
+                errorText="Ingresa una contraseña" formControlName="password"></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-button class="submit" type="submit" mode="ios" [disabled]="form.invalid">
+                {{users ? 'Actualizar':'Agregar'}}
+                <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

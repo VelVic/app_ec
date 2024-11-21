@@ -1,90 +1,85 @@
 ion-content {
-  --background: #1E1842;
-  --color: var(--ion-color-primary-contrast);
-  --padding-top: 20px;
+  --background: #1E1842; /* Fondo oscuro para el contenido */
+  --color: var(--ion-color-primary-contrast); /* Color del texto */
+  --padding-top: 10px; /* Espaciado superior */
 }
 
 ion-item {
-  font-size: 14px;
-  --color: #ffffff;
-  --background: #1E1842;
+  font-size: 14px; /* Tamaño de fuente */
+  --color: #ffffff; /* Color del texto */
+  --background: #1E1842; /* Fondo del ítem */
 
   ion-icon {
-    color: #ffffff;
+    color: #ffffff; /* Color de los íconos */
   }
 
   &.active {
-    color: #ff6c1d;
+    color: #ff6c1d; /* Color del texto cuando está activo */
     ion-icon {
-      color: #ff6c1d;
+      color: #ff6c1d; /* Color del ícono cuando está activo */
     }
   }
 }
 
 ion-menu::part(backdrop) {
   background-repeat: no-repeat;
-  background-size: 300px;
-  background-position: center right;
-  background-color: #000000;
+  background-size: cover; /* Ajusta el tamaño del fondo */
+  background-position: center;
+  background-color: #000000; /* Color del fondo del menú */
 }
 
 ion-menu::part(container) {
-  border-radius: 0 20px 20px 0;
-  box-shadow: 4px 0px 20px #1E1842;
+  border-radius: 0 20px 20px 0; /* Bordes redondeados */
+  box-shadow: 4px 0px 20px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
 }
 
 ion-menu {
-  --width: 254px;
-  --min-width: 254px;
-  outline: none;
+  --width: 254px; /* Ancho del menú */
+  --min-width: 254px; /* Ancho mínimo del menú */
+  outline: none; /* Elimina el contorno */
 }
 
 h4 {
-  margin-top: 5px;
-  font-weight: bold;
-  color: #ff6c1d;
+  margin-top: 5px; /* Espaciado superior */
+  font-weight: bold; /* Fuente en negrita */
+  color: #ff6c1d; /* Color de título */
 }
 
 ion-avatar {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto;
+  width: 120px; /* Ancho del avatar */
+  height: 120px; /* Altura del avatar */
+  margin: 0 auto; /* Centrando el avatar */
 }
 
-.empty-icon {
-  font-size: 100px;
-  color: #ff6c1d;
-}
-
-.name-user {
-  color: #ff6c1d;
-}
-
-ion-footer {
-  --background: #1E1842;
-}
 .menu-avatar {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  border: 3px solid #ffffff; /* Borde azul para destacar */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidad */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #000000; /* Fondo claro para el área del avatar */
-  overflow: hidden; /* Asegura que la imagen no se desborde del contenedor */
-  margin-bottom: 15px;
+  width: 130px; /* Ancho del contenedor del avatar */
+  height: 130px; /* Altura del contenedor del avatar */
+  border-radius: 50%; /* Bordes redondeados */
+  border: 3px solid #ffffff; /* Borde blanco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  display: flex; /* Centra el contenido del avatar */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  background: #000000; /* Fondo del área del avatar */
+  overflow: hidden; /* Oculta desbordes */
+  margin-bottom: 15px; /* Espaciado inferior */
 }
 
 .menu-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Asegura que la imagen cubra el área del avatar */
+  width: 100%; /* Ancho del avatar */
+  height: 100%; /* Altura del avatar */
+  object-fit: cover; /* Ajuste de imagen */
 }
 
 .empty-icon {
-  font-size: 60px; /* Tamaño del ícono */
-  color: #ffffff; /* Color azul para el ícono vacío */
+  font-size: 60px; /* Tamaño del ícono vacío */
+  color: #ffffff; /* Color del ícono vacío */
 }
 
+.name-user {
+  color: #ff6c1d; /* Color del nombre del usuario */
+}
+
+ion-footer {
+  --background: #634eda; /* Fondo del pie de página del menú */
+}

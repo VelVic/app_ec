@@ -77,63 +77,76 @@ export class CostsPage implements OnInit {
   }
 
   async deleteCosts(costs: Costs) {
-    let path = `costos/${costs.id}`
-    /* let path = `users/${this.user().uid}/costos/${costs.id}` */
-
+    const path = `costos/${costs.id}`;
     const loading = await this.utilsService.loading();
-    await loading.present();
-
-    let imgPath = await this.firebaseService.getFilePath(costs.img);
-    await this.firebaseService.deleteFile(imgPath);
-
-    this.firebaseService.deleteDocument(path)
-      .then(async resp => {
-
-        //Actualizar la lista de empleados
-        this.costs = this.costs.filter(e => e.id !== costs.id);
-
-        this.utilsService.dismissModal({ succes: true });
-
-        this.utilsService.presentToast({
-          message: 'Elemento eliminado correctamente',
-          duration: 2500,
-          color: 'success',
-          position: 'bottom',
-          icon: 'checkmark-circle-outline'
-        })
-        this.utilsService.dismissModal(true);
-      }).catch(error => {
-        console.log(error);
-        this.utilsService.presentToast({
-          message: error.message,
-          duration: 2500,
-          color: 'danger',
-          position: 'bottom',
-          icon: 'alert-circle-outline'
-        })
-      }).finally(() => {
-        loading.dismiss();
+  
+    try {
+      await loading.present();
+  
+      // Verificar si hay una imagen asociada y eliminarla
+      if (costs.img) {
+        const imgPath = await this.firebaseService.getFilePath(costs.img);
+        await this.firebaseService.deleteFile(imgPath);
+      }
+  
+      // Eliminar el documento del costo
+      await this.firebaseService.deleteDocument(path);
+  
+      // Actualizar la lista de costos
+      this.costs = this.costs.filter(item => item.id !== costs.id);
+  
+      // Mostrar mensaje de éxito
+      await this.utilsService.presentToast({
+        message: 'Servicio eliminado correctamente',
+        duration: 2500,
+        color: 'success',
+        position: 'bottom',
+        icon: 'checkmark-circle-outline',
       });
+  
+      // Cerrar modal con resultado exitoso
+      this.utilsService.dismissModal({ success: true });
+  
+    } catch (error) {
+      // Manejar errores
+      console.error('Error al eliminar el servicio:', error);
+  
+      this.utilsService.presentToast({
+        message: error.message || 'Ocurrió un error al eliminar el servicio',
+        duration: 2500,
+        color: 'danger',
+        position: 'bottom',
+        icon: 'alert-circle-outline',
+      });
+  
+    } finally {
+      // Asegurarse de cerrar el spinner de carga
+      await loading.dismiss();
+    }
   }
-
+  
   async confirmDeleteCosts(costs: Costs) {
-    this.utilsService.presentAlert({
-      header: 'Eliminar elemento',
-      message: '¿Estás seguro de eliminar este elemento?',
+    await this.utilsService.presentAlert({
+      header: 'Eliminar servicio',
+      message: '¿Estás seguro de eliminar este servicio?',
       mode: 'ios',
       buttons: [
         {
-          text: 'Cancelar'
-        }
-        , {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
           text: 'Eliminar',
           role: 'destructive',
-          handler: () => {
-            this.deleteCosts(costs);
-          }
-        }]
-    })
+          handler: async () => {
+            await this.deleteCosts(costs);
+          },
+        },
+      ],
+    });
   }
+  
+  
 
   getBills() {
     return this.costs.reduce((index, employees) => index + employees.importe, 0);

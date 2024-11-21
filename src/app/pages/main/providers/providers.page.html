@@ -30,7 +30,7 @@
 
     <ion-list>
       <ion-item-sliding class="product-item" *ngFor="let proveedores of provider">
-        <ion-item>
+        <ion-item detail="true" detail-icon="caret-forward-outline">
           <ion-avatar slot="start">
             <img [src]="proveedores.img" alt="">
           </ion-avatar>
@@ -44,7 +44,7 @@
           </ion-label>
 
           <ion-label *ngIf="proveedores.activo === 'No'" color="danger" class="centered-label">
-            <ion-icon slot="icon-only" name="close-circle-outline" size="large" color="danger"></ion-icon>
+            <ion-icon name="close-circle-outline" size="large" color="danger"></ion-icon>
             <div class="name">No activo</div>
           </ion-label>
           <ion-label *ngIf="proveedores.activo === 'Si'" color="success" class="centered-label">
@@ -96,7 +96,7 @@
 
   <!-- Botón Flotante -->
   <ion-fab *ngIf="user()?.tipo === 'admin'" vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="addUpdateProvider()">
+    <ion-fab-button (click)="addUpdateProvider()" color="secondary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

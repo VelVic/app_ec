@@ -25,15 +25,13 @@
   <ng-container *ngIf="!loading">
     <ion-list>
       <ion-item-sliding class="product-item" *ngFor="let inventario of inventory">
-        <ion-item>
+        <ion-item detail="true" detail-icon="caret-forward-outline">
           <ion-avatar slot="start">
             <img [src]="inventario.img" alt="{{ inventario.elemento }}">
           </ion-avatar>
           <ion-label>
             <div class="name">{{ inventario.elemento }}</div>
             <div class="data">
-              <strong>Fecha:</strong> {{ inventario.fecha }} <br>
-              <strong>Tipo:</strong> {{ inventario.tipo }} <br>
               <strong>Cantidad:</strong> {{ inventario.cantidad }} <br>
               <strong>Modelo:</strong> {{ inventario.modelo }} <br>
               <strong>Costo:</strong> {{ inventario.costo | currency: 'MXN' }} <br>
@@ -84,7 +82,7 @@
 
   <!-- Botón Flotante -->
   <ion-fab *ngIf="user()?.tipo === 'admin'" vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="addUpdateInventory()">
+    <ion-fab-button (click)="addUpdateInventory()" color="secondary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

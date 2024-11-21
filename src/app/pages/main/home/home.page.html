@@ -22,7 +22,7 @@
     <!-- Lista de Empleados -->
     <ion-list>
       <ion-item-sliding class="product-item" *ngFor="let empleado of employees">
-        <ion-item>
+        <ion-item detail="true" detail-icon="caret-forward-outline">
           <ion-avatar slot="start">
             <img [src]="empleado.img" alt="Imagen del empleado">
           </ion-avatar>
@@ -33,7 +33,7 @@
               <strong>Cargo: </strong>{{ empleado.cargo }} <br>
             </div>
           </ion-label>
-        </ion-item>    
+        </ion-item>
 
         <ion-item-options side="end">
           <ion-item-option (click)="addUpdateEmployee(empleado)" color="secondary" *ngIf="user()?.tipo === 'admin'">
@@ -42,7 +42,7 @@
           <ion-item-option (click)="viewEmployee(empleado)" color="primary">
             <ion-icon slot="icon-only" name="document-text-outline"></ion-icon>
           </ion-item-option>
-          <ion-item-option (click)="confirmDeletelEmployee(empleado)" color="danger" *ngIf="user()?.tipo === 'admin'">
+          <ion-item-option (click)="confirmDeleteEmployee(empleado)" color="danger" *ngIf="user()?.tipo === 'admin'">
             <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
           </ion-item-option>
         </ion-item-options>
@@ -76,9 +76,9 @@
 
   <!-- Botón Flotante -->
   <ion-fab *ngIf="user()?.tipo === 'admin'" vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="addUpdateEmployee()">
+    <ion-fab-button (click)="addUpdateEmployee()" color="secondary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  
+
 </ion-content>

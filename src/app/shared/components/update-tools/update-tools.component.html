@@ -3,94 +3,71 @@
 <ion-content class="ion-padding custom-content">
 
   <ion-card class="custom-card">
-    <ion-card-header class="ion-text-center">
+
+    <ion-card-header>
       <ion-avatar *ngIf="form.value.img" class="profile-avatar">
         <img [src]="form.value.img" />
       </ion-avatar>
       <ion-icon class="img-icon" name="image-outline" *ngIf="!form.value.img"></ion-icon>
     </ion-card-header>
 
-    <ion-card-content>
+    <ion-card-content class="ion-padding ion-text-center">
 
-      <form [formGroup]="form" (ngSubmit)="submit()" class="ion-padding ion-text-center" (keypress.enter)="submit()">
+      <form [formGroup]="form" (ngSubmit)="submit()">
 
 
         <ion-button (click)="takeImage()" mode="ios" size="small" shape="round">
           Tome/Seleccione una foto
         </ion-button>
 
-        <ion-grid>
+        <ion-grid fixed>
 
           <ion-row>
             <ion-col size="12">
-              <app-login-input autocomplete="name_t" type="text" label="Herramienta"
-                [control]="form.controls.elemento"></app-login-input>
-              <div class="validators" *ngIf="form.controls.elemento.errors && form.controls.elemento.touched">
-                <div *ngIf="form.controls.elemento.errors?.['required']">La herramienta es requerido</div>
-                <div *ngIf="form.controls.elemento.errors?.['minlength']">El nombre debe contener 5 caracteres</div>
-              </div>
+              <ion-input type="text" label="Herramienta" formControlName="elemento" labelPlacement="floating"
+                fill="solid" errorText="Ingresa un nombre"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
-              <app-login-input autocomplete="costo_t" type="number" label="Costo" [control]="form.controls.costo"
-                (ionInput)="setNumberInput()"></app-login-input>
-              <div class="validators" *ngIf="form.controls.costo.errors && form.controls.costo.touched">
-                <div *ngIf="form.controls.costo.errors?.['required']">El costo es requerido</div>
-              </div>
+              <ion-input type="number" label="Costo" formControlName="costo" labelPlacement="floating"
+              fill="solid" errorText="Ingresa un costo" (ionInput)="setNumberInput()"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
-              <app-login-input autocomplete="cantidad_t" type="number" label="Cantidad"
-                [control]="form.controls.cantidad"></app-login-input>
-              <div class="validators" *ngIf="form.controls.cantidad.errors && form.controls.cantidad.touched">
-                <div *ngIf="form.controls.cantidad.errors?.['required']">La cantidad es requerida</div>
-              </div>
+              <ion-input type="number" label="Cantidad" labelPlacement="floating"
+              fill="solid" errorText="Ingresa una cantidad" formControlName="cantidad"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
-              <app-login-input autocomplete="garantia_t" type="text" label="Garantia (meses)"
-                [control]="form.controls.garantia"></app-login-input>
-              <div class="validators" *ngIf="form.controls.garantia.errors && form.controls.garantia .touched">
-                <div *ngIf="form.controls.garantia .errors?.['required']">La garantia es requerida</div>
-              </div>
+              <ion-input type="number" label="Garantia (meses)" labelPlacement="floating"
+              fill="solid" errorText="Ingresa la garantia" formControlName="garantia"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
-              <app-login-input autocomplete="carateristicas_t" type="text" label="Carateristicas"
-                [control]="form.controls.caracteristicas"></app-login-input>
-              <div class="validators"
-                *ngIf="form.controls.caracteristicas.errors && form.controls.caracteristicas.touched">
-                <div *ngIf="form.controls.caracteristicas.errors?.['required']">Las caracteristicas son requeridas</div>
-                <div *ngIf="form.controls.caracteristicas.errors?.['minlength']">Debe contener minimo 5 caracteres</div>
-              </div>
+              <ion-input type="text" label="Carateristicas" labelPlacement="floating"
+              fill="solid" errorText="Ingresa al menos una palabra" formControlName="caracteristicas"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
-              <app-login-input autocomplete="vida_t" type="number" label="Vida útil (meses)"
-                [control]="form.controls.vida"></app-login-input>
-              <div class="validators" *ngIf="form.controls.vida.errors && form.controls.vida.touched">
-                <div *ngIf="form.controls.vida.errors?.['required']">La vida es requerida</div>
-              </div>
+              <ion-input type="number" label="Vida útil (meses)" labelPlacement="floating"
+              fill="solid" errorText="Ingresa el numero de meses" formControlName="vida"></ion-input>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
-              <app-login-input autocomplete="fecha_t" type="date" label="Fecha de ingreso"
-                [control]="form.controls.fecha"></app-login-input>
-              <div class="validators" *ngIf="form.controls.fecha.errors && form.controls.fecha.touched">
-                <div *ngIf="form.controls.fecha.errors?.['required']">La fecha es requerida</div>
-              </div>
+              <ion-input type="date" label="Fecha de ingreso" labelPlacement="floating"
+              fill="solid" errorText="Selecciona una fecha" formControlName="fecha"></ion-input>
             </ion-col>
           </ion-row>
 

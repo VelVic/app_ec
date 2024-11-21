@@ -1,0 +1,77 @@
+/* Estilo principal del contenedor de contenido */
+.custom-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Estilo para el avatar */
+.profile-avatar img {
+  width: 150px;      /* Tamaño del avatar (ajústalo según tus necesidades) */
+  height: 150px;     /* Asegúrate de que la altura sea igual a la anchura para mantener la forma circular */
+  border-radius: 50%; /* Hace que la imagen sea redonda */
+  object-fit: cover;  /* Asegura que la imagen se recorte correctamente sin deformarse */
+  background-color: #f0f0f0; /* Color de fondo en caso de que la imagen no se cargue */
+}
+
+/* Estilo para el contenedor del avatar */
+.profile-avatar {
+  display: flex;
+  justify-content: center; /* Centra el avatar horizontalmente */
+  align-items: center;     /* Centra el avatar verticalmente */
+  width: 100%;       /* Asegura que el contenedor ocupe el 100% de su espacio */
+  max-width: 200px;  /* Limita el tamaño máximo del avatar */
+  margin: auto;      /* Centra el avatar */
+  height: auto;      /* Mantiene la altura automática para que no se estire la imagen */
+}
+
+/* Estilos del card para el formulario */
+.custom-card {
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(24, 22, 170, 0.747);
+}
+
+/* Reducir el espacio entre la imagen y el botón */
+ion-button {
+  margin-top: 0px; /* Ajusta este valor según lo que necesites */
+}
+
+/* Ajustes para el icono de la imagen */
+.img-icon {
+  width: 100%;
+  height: 250px;
+  --border-radius: 15px;
+  margin: auto;
+}
+
+/* Cambiar el color del texto a un tono más oscuro y agrandar el texto de los inputs */
+ion-label,
+ion-input,
+ion-select {
+  color: #333333; /* Un tono gris oscuro */
+  font-size: 1rem; /* Incrementa el tamaño del texto */
+}
+
+ion-grid {
+  --ion-grid-column-padding: 5px;
+  --ion-grid-padding: 0;
+}
+
+ion-row:last-child {
+  border-bottom: none;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 767px) {
+  .profile-avatar img {
+    width: 120px;    /* Reducir el tamaño del avatar en pantallas pequeñas */
+    height: 120px;
+  }
+
+  .img-icon {
+    width: 100%;
+    height: 200px;
+  }
+}

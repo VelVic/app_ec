@@ -43,7 +43,7 @@
 
     <ion-list>
       <ion-item-sliding class="product-item" *ngFor="let registro of register">
-        <ion-item>
+        <ion-item detail="true" detail-icon="caret-forward-outline">
           <ion-avatar slot="start">
             <img [src]="registro.img" alt="">
           </ion-avatar>
@@ -57,7 +57,7 @@
           </ion-label>
 
           <ion-label *ngIf="registro.estado === 'Reparando'" color="danger" class="centered-label">
-            <ion-icon slot="icon-only" name="close-circle-outline" size="large" color="danger"></ion-icon>
+            <ion-icon name="close-circle-outline" size="large" color="danger"></ion-icon>
             <div class="name">{{ registro.estado }}</div>
           </ion-label>
           <ion-label *ngIf="registro.estado === 'Entregado'" color="success" class="centered-label">
@@ -113,7 +113,7 @@
 
   <!-- Botón Flotante -->
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="addUpdateRegister()">
+    <ion-fab-button (click)="addUpdateRegister()" color="secondary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

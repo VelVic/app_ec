@@ -43,7 +43,7 @@ export class HomePage implements OnInit {
   async viewEmployee(employee?: Employees) {
     await this.utilsService.getModal({
       component: ViewEmployeeComponent,
-      cssClass: 'add-view-inventory',
+      cssClass: 'add-view-employee',
       componentProps: { employee }
     })
   }
@@ -78,62 +78,73 @@ export class HomePage implements OnInit {
   }
 
   async deleteEmployee(employee: Employees) {
-    let path = `empleados/${employee.id}`
-    /* let path = `users/${this.user().uid}/empleados/${employee.id}` */
-
+    const path = `empleados/${employee.id}`;
     const loading = await this.utilsService.loading();
-    await loading.present();
 
-    let imgPath = await this.firebaseService.getFilePath(employee.img);
-    await this.firebaseService.deleteFile(imgPath);
+    try {
+      await loading.present();
 
-    this.firebaseService.deleteDocument(path)
-      .then(async resp => {
+      // Verificar si existe una imagen asociada y eliminarla
+      if (employee.img) {
+        const imgPath = await this.firebaseService.getFilePath(employee.img);
+        await this.firebaseService.deleteFile(imgPath);
+      }
 
-        //Actualizar la lista de empleados
-        this.employees = this.employees.filter(e => e.id !== employee.id);
+      // Eliminar el documento del empleado
+      await this.firebaseService.deleteDocument(path);
 
-        this.utilsService.dismissModal({ succes: true });
+      // Actualizar la lista local de empleados
+      this.employees = this.employees.filter(existingEmployee => existingEmployee.id !== employee.id);
 
-        this.utilsService.presentToast({
-          message: 'Empleado eliminado correctamente',
-          duration: 2500,
-          color: 'success',
-          position: 'bottom',
-          icon: 'checkmark-circle-outline'
-        })
-        this.utilsService.dismissModal(true);
-      }).catch(error => {
-        console.log(error);
-        this.utilsService.presentToast({
-          message: error.message,
-          duration: 2500,
-          color: 'danger',
-          position: 'bottom',
-          icon: 'alert-circle-outline'
-        })
-      }).finally(() => {
-        loading.dismiss();
+      // Mostrar mensaje de éxito
+      await this.utilsService.presentToast({
+        message: 'Empleado eliminado correctamente',
+        duration: 2500,
+        color: 'success',
+        position: 'bottom',
+        icon: 'checkmark-circle-outline',
       });
+
+      // Cerrar el modal con éxito
+      this.utilsService.dismissModal({ success: true });
+
+    } catch (error) {
+      // Manejo de errores
+      console.error('Error al eliminar el empleado:', error);
+
+      this.utilsService.presentToast({
+        message: error.message || 'Ocurrió un error al eliminar al empleado',
+        duration: 2500,
+        color: 'danger',
+        position: 'bottom',
+        icon: 'alert-circle-outline',
+      });
+
+    } finally {
+      // Ocultar el loading independientemente del resultado
+      await loading.dismiss();
+    }
   }
 
-  async confirmDeletelEmployee(employee: Employees) {
-    this.utilsService.presentAlert({
+  async confirmDeleteEmployee(employee: Employees) {
+    await this.utilsService.presentAlert({
       header: 'Eliminar empleado',
       message: '¿Estás seguro de eliminar este empleado?',
       mode: 'ios',
       buttons: [
         {
-          text: 'Cancelar'
-        }
-        , {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
           text: 'Eliminar',
           role: 'destructive',
-          handler: () => {
-            this.deleteEmployee(employee);
-          }
-        }]
-    })
+          handler: async () => {
+            await this.deleteEmployee(employee);
+          },
+        },
+      ],
+    });
   }
 
   getBills() {

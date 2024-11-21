@@ -77,63 +77,75 @@ export class InventoryPage implements OnInit {
   }
 
   async deleteInventory(inventory: Inventory) {
-    let path = `inventario/${inventory.id}`;
-    /* let path = `users/${this.user().uid}/inventario/${inventory.id}` */ // Por si queremos dividir el inventario por usuario
-
+    const path = `inventario/${inventory.id}`;
     const loading = await this.utilsService.loading();
-    await loading.present();
-
-    let imgPath = await this.firebaseService.getFilePath(inventory.img);
-    await this.firebaseService.deleteFile(imgPath);
-
-    this.firebaseService.deleteDocument(path)
-      .then(async resp => {
-
-        //Actualizar la lista de empleados
-        this.inventory = this.inventory.filter(e => e.id !== inventory.id);
-
-        this.utilsService.dismissModal({ succes: true });
-
-        this.utilsService.presentToast({
-          message: 'Elemento eliminado correctamente',
-          duration: 2500,
-          color: 'success',
-          position: 'bottom',
-          icon: 'checkmark-circle-outline'
-        })
-        this.utilsService.dismissModal(true);
-      }).catch(error => {
-        console.log(error);
-        this.utilsService.presentToast({
-          message: error.message,
-          duration: 2500,
-          color: 'danger',
-          position: 'bottom',
-          icon: 'alert-circle-outline'
-        })
-      }).finally(() => {
-        loading.dismiss();
+  
+    try {
+      await loading.present();
+  
+      // Verificar si hay una imagen asociada y eliminarla
+      if (inventory.img) {
+        const imgPath = await this.firebaseService.getFilePath(inventory.img);
+        await this.firebaseService.deleteFile(imgPath);
+      }
+  
+      // Eliminar el documento del inventario
+      await this.firebaseService.deleteDocument(path);
+  
+      // Actualizar la lista de inventario
+      this.inventory = this.inventory.filter(item => item.id !== inventory.id);
+  
+      // Mostrar mensaje de éxito
+      await this.utilsService.presentToast({
+        message: 'Producto eliminado correctamente',
+        duration: 2500,
+        color: 'success',
+        position: 'bottom',
+        icon: 'checkmark-circle-outline',
       });
+  
+      // Cerrar modal con resultado exitoso
+      this.utilsService.dismissModal({ success: true });
+  
+    } catch (error) {
+      // Manejar errores
+      console.error('Error al eliminar el producto del inventario:', error);
+  
+      this.utilsService.presentToast({
+        message: error.message || 'Ocurrió un error al eliminar el producto',
+        duration: 2500,
+        color: 'danger',
+        position: 'bottom',
+        icon: 'alert-circle-outline',
+      });
+  
+    } finally {
+      // Asegurarse de cerrar el spinner de carga
+      await loading.dismiss();
+    }
   }
-
+  
   async confirmDeleteInventory(inventory: Inventory) {
-    this.utilsService.presentAlert({
-      header: 'Eliminar elemento',
-      message: '¿Estás seguro de eliminar este elemento?',
+    await this.utilsService.presentAlert({
+      header: 'Eliminar producto',
+      message: '¿Estás seguro de eliminar este producto?',
       mode: 'ios',
       buttons: [
         {
-          text: 'Cancelar'
-        }
-        , {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
           text: 'Eliminar',
           role: 'destructive',
-          handler: () => {
-            this.deleteInventory(inventory);
-          }
-        }]
-    })
+          handler: async () => {
+            await this.deleteInventory(inventory);
+          },
+        },
+      ],
+    });
   }
+  
 
   getBills() {
     return this.inventory.reduce((index, inventory) => index + inventory.costo, 0);

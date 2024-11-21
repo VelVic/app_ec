@@ -25,7 +25,7 @@
   <ng-container *ngIf="!loading">
     <ion-list>
       <ion-item-sliding class="product-item" *ngFor="let costo of costs">
-        <ion-item>
+        <ion-item detail="true" detail-icon="caret-forward-outline">
           <ion-avatar slot="start">
             <img [src]="costo.img" alt="Imagen del costo">
           </ion-avatar>
@@ -80,7 +80,7 @@
 
   <!-- Botón Flotante -->
   <ion-fab *ngIf="user()?.tipo === 'admin'" vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="addUpdateCosts()">
+    <ion-fab-button (click)="addUpdateCosts()" color="secondary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
