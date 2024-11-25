@@ -10,4 +10,5 @@ export interface Registers {
     estado: string;
     encargado: string;
     costo: number;
+    identificador: string;
 }

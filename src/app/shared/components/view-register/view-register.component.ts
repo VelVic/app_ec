@@ -26,6 +26,7 @@ export class ViewRegisterComponent  implements OnInit {
     estado: new FormControl('', [Validators.required]),
     encargado: new FormControl('', [Validators.required]),
     costo: new FormControl(null, [Validators.required]),
+    identificador: new FormControl('', [Validators.required])
   });
 
   constructor(private utilsService: UtilsService) { }

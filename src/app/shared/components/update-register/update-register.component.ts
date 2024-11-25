@@ -30,6 +30,7 @@ export class UpdateRegisterComponent  implements OnInit {
     estado: new FormControl('', [Validators.required]),
     encargado: new FormControl('', [Validators.required]),
     costo: new FormControl(null, [Validators.required]),
+    identificador: new FormControl('',)
   });
 
   ngOnInit() {

@@ -13,29 +13,15 @@
 
     <ion-card-content>
       <ion-grid>
+
         <ion-row>
-          <ion-col size="12" size-sm="6" class="item-title">Registro</ion-col>
+          <ion-col size="12" size-sm="6" class="item-title">Identificador</ion-col>
+          <ion-col size="12" size-sm="6" class="item-value">{{ form.value.identificador }}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12" size-sm="6" class="item-title">Cliente</ion-col>
           <ion-col size="12" size-sm="6" class="item-value">{{ form.value.registro }}</ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="12" size-sm="6" class="item-title">Descripcion</ion-col>
-          <ion-col size="12" size-sm="6" class="item-value">{{ form.value.descripcion }}</ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="12" size-sm="6" class="item-title">Fecha de ingreso</ion-col>
-          <ion-col size="12" size-sm="6" class="item-value">{{ form.value.fecha }}</ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="12" size-sm="6" class="item-title">Tipo</ion-col>
-          <ion-col size="12" size-sm="6" class="item-value">{{ form.value.tipo }}</ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="12" size-sm="6" class="item-title">Estado</ion-col>
-          <ion-col size="12" size-sm="6" class="item-value">{{ form.value.estado }}</ion-col>
         </ion-row>
 
         <ion-row>
@@ -49,6 +35,21 @@
         </ion-row>
 
         <ion-row>
+          <ion-col size="12" size-sm="6" class="item-title">Descripcion</ion-col>
+          <ion-col size="12" size-sm="6" class="item-value">{{ form.value.descripcion }}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12" size-sm="6" class="item-title">Tipo</ion-col>
+          <ion-col size="12" size-sm="6" class="item-value">{{ form.value.tipo }}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12" size-sm="6" class="item-title">Estado</ion-col>
+          <ion-col size="12" size-sm="6" class="item-value">{{ form.value.estado }}</ion-col>
+        </ion-row>
+
+        <ion-row>
           <ion-col size="12" size-sm="6" class="item-title">Costo</ion-col>
           <ion-col size="12" size-sm="6" class="item-value">{{ form.value.costo | currency: 'MXN' }}</ion-col>
         </ion-row>
@@ -56,6 +57,11 @@
         <ion-row>
           <ion-col size="12" size-sm="6" class="item-title">Encargado del registro</ion-col>
           <ion-col size="12" size-sm="6" class="item-value">{{ form.value.encargado }}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12" size-sm="6" class="item-title">Fecha de ingreso</ion-col>
+          <ion-col size="12" size-sm="6" class="item-value">{{ form.value.fecha }}</ion-col>
         </ion-row>
 
       </ion-grid>
