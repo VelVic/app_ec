@@ -23,19 +23,31 @@
 
   <!-- Lista de Costos -->
   <ng-container *ngIf="!loading">
+
     <ion-list>
       <ion-item-sliding class="product-item" *ngFor="let costo of costs">
         <ion-item detail="true" detail-icon="caret-forward-outline">
           <ion-avatar slot="start">
-            <img [src]="costo.img" alt="Imagen del costo">
+            <img [src]="costo.img">
           </ion-avatar>
           <ion-label>
             <div class="name">{{ costo.elemento }}</div>
             <div class="data">
-              <strong>Fecha: </strong>{{ costo.fecha }} <br>
+              <strong>Proveedor: </strong>{{ costo.proveedor }} <br>
               <strong>Importe: </strong>{{ costo.importe | currency: 'MXN' }} <br>
+              <strong>Fecha: </strong>{{ costo.fecha }} <br>
             </div>
           </ion-label>
+
+          <ion-label *ngIf="costo.pago === 'Pendiente'" color="danger" class="centered-label">
+            <ion-icon name="close-circle-outline" size="large" color="danger"></ion-icon>
+            <div class="name">Pendiente</div>
+          </ion-label>
+          <ion-label *ngIf="costo.pago === 'Pagado'" color="success" class="centered-label">
+            <ion-icon name="checkmark-circle-outline" size="large" color="success"></ion-icon>
+            <div class="name">Pagado</div>
+          </ion-label>
+
         </ion-item>
 
         <ion-item-options>

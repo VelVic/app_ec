@@ -23,6 +23,10 @@ export class UpdateCostsComponent  implements OnInit {
     elemento: new FormControl('', [Validators.required,]),
     importe: new FormControl(null, [Validators.required]),
     fecha: new FormControl('', [Validators.required]),
+    categoria: new FormControl('', [Validators.required]),
+    frecuencia: new FormControl('', [Validators.required]),
+    pago: new FormControl('', [Validators.required]),
+    proveedor: new FormControl(''),
     img: new FormControl('', [Validators.required]),
   });
   

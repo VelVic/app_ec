@@ -10,6 +10,14 @@
   <!-- Lista de Registros -->
   <ng-container *ngIf="!loading && users()?.tipo === 'admin'">
 
+    <!-- Mensaje de Vacío -->
+  <div class="empty" *ngIf="!loading && 
+  (employee.length === 0 && user.length === 0 && provider.length === 0 && inventory.length === 0 &&
+  register.length === 0 && tool.length === 0 && cost.length === 0)">
+    <ion-icon name="cash-outline"></ion-icon>
+    <h3>No hay reportes disponibles</h3>
+  </div>
+
     <ion-list [inset]="true">
 
       <!-- Lista de Empleados -->
@@ -97,11 +105,5 @@
       </ion-item-sliding>
     </ion-list>
   </ng-container>
-
-  <!-- Mensaje de Vacío -->
-  <div class="empty" *ngIf="!loading && (employee.length === 0 && provider.length === 0)">
-    <ion-icon name="cash-outline"></ion-icon>
-    <h3>No hay reportes disponibles</h3>
-  </div>
 
 </ion-content>

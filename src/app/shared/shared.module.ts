@@ -15,7 +15,6 @@ import { ViewEmployeeComponent } from './components/view-employee/view-employee.
 import { ViewRegisterComponent } from './components/view-register/view-register.component';
 import { ViewToolsComponent } from './components/view-tools/view-tools.component';
 import { ViewCostsComponent } from './components/view-costs/view-costs.component';
-import { UpdateFinanceComponent } from './components/update-finance/update-finance.component';
 import { UpdateProvidersComponent } from './components/update-providers/update-providers.component';
 import { ViewProvidersComponent } from './components/view-providers/view-providers.component';
 import { UpdateAccountsComponent } from './components/update-accounts/update-accounts.component';
@@ -37,7 +36,6 @@ import { ReportToolsComponent } from './components/report-tools/report-tools.com
     UpdateInventoryComponent,
     UpdateToolsComponent,
     UpdateCostsComponent,
-    UpdateFinanceComponent,
     UpdateProvidersComponent,
     UpdateAccountsComponent,
 
@@ -65,7 +63,6 @@ import { ReportToolsComponent } from './components/report-tools/report-tools.com
     UpdateInventoryComponent,
     UpdateToolsComponent,
     UpdateCostsComponent,
-    UpdateFinanceComponent,
     UpdateProvidersComponent,
     UpdateAccountsComponent,
 

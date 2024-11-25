@@ -138,13 +138,11 @@ export class ProvidersPage implements OnInit {
 
   getActivos(): number {
     if (!this.provider || this.provider.length === 0) return 0;
-    // Filtra los trabajos que están en estado 'revisando' o 'reparando'
     return this.provider.filter(job => job.activo !== 'No').length;
   }
 
   getInactivos(): number {
     if (!this.provider || this.provider.length === 0) return 0;
-    // Filtra los trabajos que están en estado 'revisando' o 'reparando'
     return this.provider.filter(job => job.activo === 'No').length;
   }
 }

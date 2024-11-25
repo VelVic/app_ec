@@ -35,6 +35,45 @@
             </ion-col>
           </ion-row>
 
+          <ion-row>
+            <ion-col size="12">
+              <ion-select label="Categoria" formControlName="categoria" labelPlacement="floating" interface="popover"
+                fill="solid" value="Si">
+                <ion-select-option selected value="Servicios básicos">Servicios básicos</ion-select-option>
+                <ion-select-option value="Mantenimiento">Mantenimiento</ion-select-option>
+                <ion-select-option value="Insumos">Insumos</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-select label="Frecuencia" formControlName="frecuencia" labelPlacement="floating" interface="popover"
+                fill="solid" value="Si">
+                <ion-select-option selected value="Quincenal">Quincenal</ion-select-option>
+                <ion-select-option value="Mensual">Mensual</ion-select-option>
+                <ion-select-option value="Unico">Unico</ion-select-option>
+                <ion-select-option value="Anual">Anual</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-select label="Estado del pago" formControlName="pago" labelPlacement="floating" interface="popover"
+                fill="solid" value="Si">
+                <ion-select-option selected value="Pagado">Pagado</ion-select-option>
+                <ion-select-option value="Pendiente">Pendiente</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-input type="text" label="Proveedor" formControlName="proveedor" labelPlacement="floating"
+                fill="solid" errorText="Ingresa un proveedor"></ion-input>
+            </ion-col>
+          </ion-row>
 
           <ion-row>
             <ion-col size="12">

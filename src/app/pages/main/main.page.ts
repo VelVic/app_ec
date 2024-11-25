@@ -33,7 +33,7 @@ export class MainPage implements OnInit {
       icon: 'construct',
     },
     {
-      title: 'Servicios (gastos)',
+      title: 'Servicios',
       url: '/main/costs',
       icon: 'pricetags',
     },
@@ -46,12 +46,6 @@ export class MainPage implements OnInit {
 
   admin = [
     {
-      title: 'Finanzas',
-      url: '/main/finance',
-      icon: 'cash',
-      color:'light'
-    },
-    {
       title: 'Reportes',
       url: '/main/report',
       icon: 'documents',
@@ -59,7 +53,7 @@ export class MainPage implements OnInit {
     },
     {
       title: 'Empleados',
-      url: '/main/home',
+      url: '/main/employees',
       icon: 'people',
       color:'light'
     },

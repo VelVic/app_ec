@@ -48,11 +48,11 @@
             <img [src]="registro.img" alt="">
           </ion-avatar>
           <ion-label>
-            <div class="name">{{ registro.registro }}</div>
+            <div class="name">{{ registro.registro  }} - {{ registro.tipo }}</div>
             <div class="data">
-              <strong>Fecha de Ingreso: </strong> {{ registro.fecha }}<br>
-              <strong>Teléfono cliente: </strong>{{ registro.telefono }} <br>
               <strong>Encargado: </strong> {{ registro.encargado }} <br>
+              <strong>Costo: </strong> {{ registro.costo | currency: 'MXN' }}<br>
+              <strong>Fecha: </strong> {{ registro.fecha }}<br>
             </div>
           </ion-label>
 

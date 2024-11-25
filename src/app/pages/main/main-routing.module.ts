@@ -13,10 +13,6 @@ const routes: Routes = [
         loadChildren: () => import('./registers/registers.module').then( m => m.RegistersPageModule)
       },
       {
-        path: 'home',
-        loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-      },
-      {
         path: 'profile',
         loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
       },
@@ -33,10 +29,6 @@ const routes: Routes = [
         loadChildren: () => import('./costs/costs.module').then( m => m.CostsPageModule)
       },
       {
-        path: 'finance',
-        loadChildren: () => import('./finance/finance.module').then( m => m.FinancePageModule)
-      },
-      {
         path: 'providers',
         loadChildren: () => import('./providers/providers.module').then( m => m.ProvidersPageModule)
       },
@@ -48,8 +40,13 @@ const routes: Routes = [
         path: 'report',
         loadChildren: () => import('./report/report.module').then( m => m.ReportPageModule)
       },
+      {
+        path: 'employees',
+        loadChildren: () => import('./employees/employees.module').then( m => m.EmployeesPageModule)
+      },
     ]
-  },  
+  },   
+ 
 ];
 
 @NgModule({

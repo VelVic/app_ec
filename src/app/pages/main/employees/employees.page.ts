@@ -8,11 +8,11 @@ import { UpdateEmployeeComponent } from 'src/app/shared/components/update-employ
 import { ViewEmployeeComponent } from 'src/app/shared/components/view-employee/view-employee.component';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: 'app-employees',
+  templateUrl: './employees.page.html',
+  styleUrls: ['./employees.page.scss'],
 })
-export class HomePage implements OnInit {
+export class EmployeesPage implements OnInit {
 
   utilsService = inject(UtilsService);
   firebaseService = inject(FirebaseService);

@@ -148,7 +148,7 @@ export class ToolsPage implements OnInit {
   }  
 
   getBills() {
-    return this.tools.reduce((index, tools) => index + tools.costo, 0);
+    return this.tools.reduce((index, tools) => index + tools.costo * tools.cantidad, 0);
   }
 
 }

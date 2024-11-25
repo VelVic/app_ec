@@ -149,7 +149,7 @@ export class InventoryPage implements OnInit {
   
 
   getBills() {
-    return this.inventory.reduce((index, inventory) => index + inventory.costo, 0);
+    return this.inventory.reduce((index, inventory) => index + inventory.costo * inventory.cantidad, 0);
   }
 
 }
