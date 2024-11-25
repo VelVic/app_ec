@@ -19,6 +19,13 @@ import { UpdateFinanceComponent } from './components/update-finance/update-finan
 import { UpdateProvidersComponent } from './components/update-providers/update-providers.component';
 import { ViewProvidersComponent } from './components/view-providers/view-providers.component';
 import { UpdateAccountsComponent } from './components/update-accounts/update-accounts.component';
+import { ReportEmployeeComponent } from './components/report-employee/report-employee.component';
+import { ReportProvidersComponent } from './components/report-providers/report-providers.component';
+import { ReportAccountsComponent } from './components/report-accounts/report-accounts.component';
+import { ReportCostsComponent } from './components/report-costs/report-costs.component';
+import { ReportInventoryComponent } from './components/report-inventory/report-inventory.component';
+import { ReportRegisterComponent } from './components/report-register/report-register.component';
+import { ReportToolsComponent } from './components/report-tools/report-tools.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +46,15 @@ import { UpdateAccountsComponent } from './components/update-accounts/update-acc
     ViewInventoryComponent,
     ViewToolsComponent,
     ViewCostsComponent,
-    ViewProvidersComponent
+    ViewProvidersComponent,
+
+    ReportAccountsComponent,
+    ReportCostsComponent,
+    ReportEmployeeComponent,
+    ReportInventoryComponent,
+    ReportProvidersComponent,
+    ReportRegisterComponent,
+    ReportToolsComponent
   ],
   exports: [
     HeaderComponent,
@@ -60,6 +75,15 @@ import { UpdateAccountsComponent } from './components/update-accounts/update-acc
     ViewToolsComponent,
     ViewCostsComponent,
     ViewProvidersComponent,
+
+    ReportAccountsComponent,
+    ReportCostsComponent,
+    ReportEmployeeComponent,
+    ReportInventoryComponent,
+    ReportProvidersComponent,
+    ReportRegisterComponent,
+    ReportToolsComponent,
+
 
     FormsModule,
     ReactiveFormsModule

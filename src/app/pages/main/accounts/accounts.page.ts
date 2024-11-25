@@ -17,7 +17,7 @@ export class AccountsPage implements OnInit {
   loading: boolean = false;
   users: User[] = [];
   ngOnInit() {
-    // this.getEmployee();
+    this.getUser();
   }
 
   ionViewWillEnter() {

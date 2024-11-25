@@ -15,7 +15,7 @@ export class PdfService {
     if (data) {
       try {
         // Captura el contenido del elemento como un canvas
-        const canvas = await html2canvas(data, { scale: 2  });
+        const canvas = await html2canvas(data, { scale: 3 });
         const imgWidth = 210; // Ancho A4 en mm
         const pageHeight = 295; // Altura A4 en mm
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
@@ -32,7 +32,7 @@ export class PdfService {
         let position = 0;
 
         // Añadir la imagen del contenido
-        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 30, imgWidth, imgHeight);
+        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 35, imgWidth, imgHeight);
         heightLeft -= pageHeight;
 
         // Añadir más páginas si es necesario

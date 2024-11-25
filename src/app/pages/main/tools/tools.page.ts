@@ -20,6 +20,7 @@ export class ToolsPage implements OnInit {
   tools: Tools[] = [];
 
   ngOnInit() {
+    this.getTools();
   }
 
   ionViewWillEnter() {

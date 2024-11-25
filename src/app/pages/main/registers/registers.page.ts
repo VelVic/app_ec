@@ -20,6 +20,7 @@ export class RegistersPage implements OnInit {
   register: Registers[] = [];
 
   ngOnInit() {
+    this.getRegister();
   }
 
   ionViewWillEnter() {
@@ -139,11 +140,10 @@ export class RegistersPage implements OnInit {
           text: 'Eliminar',
           role: 'destructive',
           handler: async () => {
-            await this.deleteRegister(register);
+            this.deleteRegister(register);
           },
-        },
-      ],
-    });
+        }],
+    })
   }  
 
   getBills() {

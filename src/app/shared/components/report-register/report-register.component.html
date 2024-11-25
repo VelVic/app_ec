@@ -1,0 +1,45 @@
+<app-header [isModal]="true" title="Reporte de clientes"></app-header>
+
+<ion-content class="ion-text-center">
+
+  <ng-container>
+    <ion-card >
+      <div id="content">
+
+          <ion-card-header>
+            <ion-card-title color="primary">Clientes</ion-card-title>
+          </ion-card-header>
+          <table class="table table-info table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Articulo</th>
+                <th scope="col">Costo</th>
+                <th scope="col">Encargado</th>
+                <th scope="col">Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cliente of registers, let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ cliente.registro }}</td>
+                <td>{{ cliente.tipo }}</td>
+                <td>{{ cliente.costo | currency: 'MXN' }}</td>
+                <td>{{ cliente.encargado }}</td>
+                <td>{{ cliente.fecha }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+    </ion-card>
+
+    <ion-button (click)="generatePDF()" color="primary" mode="ios">
+      Descargar PDF
+      <ion-icon slot="end" name="download"></ion-icon>
+    </ion-button>
+
+  </ng-container>
+
+</ion-content>

@@ -1,0 +1,41 @@
+<app-header [isModal]="true" title="Reporte de servicios"></app-header>
+
+<ion-content class="ion-text-center">
+
+  <ng-container>
+    <ion-card >
+      <div id="content">
+
+          <ion-card-header>
+            <ion-card-title color="primary">Servicios</ion-card-title>
+          </ion-card-header>
+          <table class="table table-info table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Servicio</th>
+                <th scope="col">Importe</th>
+                <th scope="col">Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let costos of cost, let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ costos.elemento}}</td>
+                <td>{{ costos.importe| currency: 'MXN' }}</td>
+                <td>{{ costos.fecha }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+    </ion-card>
+
+    <ion-button (click)="generatePDF()" color="primary" mode="ios">
+      Descargar PDF
+      <ion-icon slot="end" name="download"></ion-icon>
+    </ion-button>
+
+  </ng-container>
+
+</ion-content>

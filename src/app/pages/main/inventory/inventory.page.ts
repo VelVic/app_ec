@@ -20,6 +20,7 @@ export class InventoryPage implements OnInit {
   inventory: Inventory[] = [];
 
   ngOnInit() {
+    this.getInventory();
   }
 
   ionViewWillEnter() {

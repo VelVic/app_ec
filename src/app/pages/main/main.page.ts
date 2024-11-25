@@ -20,7 +20,7 @@ export class MainPage implements OnInit {
     {
       title: 'Clientes',
       url: '/main/registers',
-      icon: 'people',
+      icon: 'briefcase',
     },
     {
       title: 'Productos',
@@ -49,6 +49,12 @@ export class MainPage implements OnInit {
       title: 'Finanzas',
       url: '/main/finance',
       icon: 'cash',
+      color:'light'
+    },
+    {
+      title: 'Reportes',
+      url: '/main/report',
+      icon: 'documents',
       color:'light'
     },
     {

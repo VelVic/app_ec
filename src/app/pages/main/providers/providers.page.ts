@@ -20,6 +20,7 @@ export class ProvidersPage implements OnInit {
   provider: Providers[] = [];
 
   ngOnInit() {
+    this.getProvider();
   }
 
   ionViewWillEnter() {

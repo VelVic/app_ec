@@ -1,0 +1,41 @@
+<app-header [isModal]="true" title="Reporte de cuentas"></app-header>
+
+<ion-content class="ion-text-center">
+
+  <ng-container>
+    <ion-card >
+      <div id="content">
+
+          <ion-card-header>
+            <ion-card-title color="primary">Cuentas</ion-card-title>
+          </ion-card-header>
+          <table class="table table-info table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Tipo de Cuenta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cuenta of user, let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ cuenta.name}}</td>
+                <td>{{ cuenta.email }}</td>
+                <td>{{ cuenta.tipo }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+    </ion-card>
+
+    <ion-button (click)="generatePDF()" color="primary" mode="ios">
+      Descargar PDF
+      <ion-icon slot="end" name="download"></ion-icon>
+    </ion-button>
+
+  </ng-container>
+
+</ion-content>

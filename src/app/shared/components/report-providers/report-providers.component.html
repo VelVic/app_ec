@@ -1,0 +1,43 @@
+<app-header [isModal]="true" title="Reporte de proveedores"></app-header>
+
+<ion-content class="ion-text-center">
+
+  <ng-container>
+    <ion-card >
+      <div id="content">
+
+          <ion-card-header>
+            <ion-card-title color="primary">Proveedores</ion-card-title>
+          </ion-card-header>
+          <table class="table table-info table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Activo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let proveedor of providers, let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ proveedor.nombre }}</td>
+                <td>{{ proveedor.email }}</td>
+                <td>{{ proveedor.telefono }}</td>
+                <td>{{ proveedor.activo }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+    </ion-card>
+
+    <ion-button (click)="generatePDF()" color="primary" mode="ios">
+      Descargar PDF
+      <ion-icon slot="end" name="download"></ion-icon>
+    </ion-button>
+
+  </ng-container>
+
+</ion-content>

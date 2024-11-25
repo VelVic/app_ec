@@ -20,6 +20,7 @@ export class CostsPage implements OnInit {
   costs: Costs[] = [];
 
   ngOnInit() {
+    this.getCosts();
   }
 
   ionViewWillEnter() {

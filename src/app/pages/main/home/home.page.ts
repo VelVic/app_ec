@@ -20,7 +20,7 @@ export class HomePage implements OnInit {
   employees: Employees[] = [];
 
   ngOnInit() {
-    // this.getEmployee();
+    this.getEmployee();
   }
 
   ionViewWillEnter() {

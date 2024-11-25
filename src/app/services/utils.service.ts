@@ -27,7 +27,6 @@ export class UtilsService {
 
   async presentToast(opts?: ToastOptions){
     const toast = await this.toastCtrl.create(opts);
-    
     toast.present();
   }
 
