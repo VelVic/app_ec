@@ -43,7 +43,7 @@
 
     <ion-list>
       <ion-item-sliding class="product-item" *ngFor="let registro of register">
-        <ion-item detail="true" detail-icon="caret-forward-outline">
+        <ion-item detail="true" detail-icon="caret-forward-outline" button>
           <ion-avatar slot="start">
             <img [src]="registro.img" alt="">
           </ion-avatar>
@@ -107,7 +107,7 @@
 
   <!-- Mensaje de Vacío -->
   <div class="empty" *ngIf="!loading && !register.length">
-    <ion-icon name="people-outline"></ion-icon>
+    <ion-icon name="briefcase-outline"></ion-icon>
     <h3>No hay clientes disponibles</h3>
   </div>
 

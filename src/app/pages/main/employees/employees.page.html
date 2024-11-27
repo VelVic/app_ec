@@ -22,7 +22,7 @@
     <!-- Lista de Empleados -->
     <ion-list>
       <ion-item-sliding class="product-item" *ngFor="let empleado of employees">
-        <ion-item detail="true" detail-icon="caret-forward-outline">
+        <ion-item detail="true" detail-icon="caret-forward-outline" button>
           <ion-avatar slot="start">
             <img [src]="empleado.img" alt="Imagen del empleado">
           </ion-avatar>

@@ -1,16 +1,16 @@
 <app-header [showMenu]="true" title="Perfil"></app-header>
 
 <ion-content class="ion-padding-top ion-text-center profile-content">
-  <h3 class="profile-heading">Foto de Perfil</h3>
+  <h3 class="profile-heading">Información de Perfil</h3>
 
   <div class="profile-img-container">
     <img class="i-profile" *ngIf="user()?.img" [src]="user()?.img" alt="Foto de perfil">
     <ion-icon *ngIf="!user()?.img" class="empty-icon" name="person-circle-outline"></ion-icon>
   </div>
 
-  <ion-button class="photo-btn" (click)="takeImage()" color="secondary" mode="ios" size="small" shape="round">
+  <ion-button class="photo-btn" fill="outline" (click)="takeImage()" color="secondary" mode="ios" shape="round">
     <ion-icon slot="start" name="camera-outline"></ion-icon>
-    Tomar/Seleccionar una foto
+    Cambiar foto
   </ion-button>
 
   <div class="profile-info">
@@ -20,4 +20,3 @@
     <h3 class="profile-email">{{ user()?.email }}</h3>
   </div>
 </ion-content>
-

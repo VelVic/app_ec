@@ -26,7 +26,7 @@
     <!-- Lista de Empleados -->
     <ion-list>
       <ion-item-sliding class="product-item" *ngFor="let usuario of users">
-        <ion-item detail="true" detail-icon="caret-forward-outline">
+        <ion-item detail="true" detail-icon="caret-forward-outline" button>
           <ion-avatar slot="start">
             <img [src]="usuario.img" alt="Imagen del usuario">
           </ion-avatar>
@@ -50,7 +50,7 @@
 
     <!-- Mensaje de Vacío -->
     <div class="empty" *ngIf="!users.length">
-      <ion-icon name="people-outline"></ion-icon>
+      <ion-icon name="person-add-outline"></ion-icon>
       <h3>No hay cuentas disponibles</h3>
     </div>
   </ng-container>
@@ -74,7 +74,7 @@
 
   <!-- Botón Flotante -->
   <ion-fab *ngIf="user()?.tipo === 'admin'" vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="addUpdateUser()" color="secondary">
+    <ion-fab-button (click)="addUpdateUser()" fill="clear" color="secondary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

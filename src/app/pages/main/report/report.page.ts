@@ -228,22 +228,24 @@ export class ReportPage implements OnInit {
   }
 
   getRegister() {
-    const path = 'registros/';
+    const path = `registros/`;
+
+    this.loading = true;
+
     this.firebaseService.getCollectionRegister(path)
-      .snapshotChanges()
-      .pipe(
-        map(changes => changes.map(c => ({
-          id: c.payload.doc.id,
-          ...c.payload.doc.data()
-        })))
-      )
-      .subscribe({
+      .snapshotChanges().pipe(
+        map(changes => changes.length > 0 ? [{
+          id: changes[0].payload.doc.id,
+          ...changes[0].payload.doc.data()
+        }] : []), // Verifica si tiene datos y toma el primer item
+        takeUntil(this.unsubscribe$)
+      ).subscribe({
         next: (resp: any) => {
           this.register = resp;
           this.loading = false;
         },
         error: (err) => {
-          console.error('Error al cargar los registros:', err);
+          console.error('Error al cargar los clientes:', err);
           this.loading = false;
         }
       });

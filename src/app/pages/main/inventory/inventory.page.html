@@ -25,7 +25,7 @@
   <ng-container *ngIf="!loading">
     <ion-list>
       <ion-item-sliding class="product-item" *ngFor="let inventario of inventory">
-        <ion-item detail="true" detail-icon="caret-forward-outline">
+        <ion-item detail="true" detail-icon="caret-forward-outline" button>
           <ion-avatar slot="start">
             <img [src]="inventario.img" alt="{{ inventario.elemento }}">
           </ion-avatar>

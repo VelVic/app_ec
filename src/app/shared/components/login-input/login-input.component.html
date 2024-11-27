@@ -1,13 +1,14 @@
 <ion-item class="ion-custom" lines="none">
-  <ion-icon *ngIf="icon" slot="start" color="primary" [name]="icon"></ion-icon>
+  <ion-icon *ngIf="icon" slot="start" color="secondary" [name]="icon"></ion-icon>
   <ion-input
     [type]="type"
     [autocomplete]="autocomplete"
     [label]="label"
     [formControl]="control"
     labelPlacement="floating"
+    [counter]="true" maxlength="30"
   ></ion-input>
-  <ion-button *ngIf="isPassword" (click)="mostraruOcultarPass()" slot="end" fill="clear" shape="round">
-    <ion-icon slot="icon-only" [name]="hide ? 'eye-outline':   'eye-off-outline'"></ion-icon>
+  <ion-button *ngIf="isPassword" fill="clear" (click)="mostraruOcultarPass()" slot="end" size="default" fill="clear" shape="round">
+    <ion-icon slot="icon-only" size="default" color="secondary" [name]="hide ? 'eye-outline':   'eye-off-outline'"></ion-icon>
   </ion-button>
 </ion-item><!-- ME QUEDÉ EN LAS CONFIGURACIONES DE FIREBASE, APENAS COMENZAMOS VICTOR MANUEL VELEDIAZ HERNANDEZ -->

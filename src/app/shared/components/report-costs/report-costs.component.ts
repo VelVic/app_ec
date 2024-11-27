@@ -40,7 +40,7 @@ export class ReportCostsComponent  implements OnInit {
     const month = String(today.getMonth() + 1).padStart(2, '0'); // Meses son de 0 a 11
     const year = today.getFullYear();
     const formattedDate = `${day}-${month}-${year}`;
-    this.PdfService.downloadPDF('content', `Costos_${formattedDate}`)
+    this.PdfService.downloadPDF('content', `Servicios_${formattedDate}`)
       .then(async () => {
         await loading.dismiss();
         if (screen.width > 500) {
