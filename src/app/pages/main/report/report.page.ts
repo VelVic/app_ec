@@ -136,14 +136,17 @@ export class ReportPage implements OnInit {
   }
 
   getCost() {
-    const path = 'costos/';
+    const path = `costos/`;
+
+    this.loading = true;
+
     this.firebaseService.getCollectionCosts(path)
-      .snapshotChanges()
-      .pipe(
-        map(changes => changes.map(c => ({
-          id: c.payload.doc.id,
-          ...c.payload.doc.data()
-        })))
+      .snapshotChanges().pipe(
+        map(changes => changes.length > 0 ? [{
+          id: changes[0].payload.doc.id,
+          ...changes[0].payload.doc.data()
+        }] : []), // Verifica si hay datos y toma solo el primer item
+        takeUntil(this.unsubscribe$)
       )
       .subscribe({
         next: (resp: any) => {
@@ -206,14 +209,17 @@ export class ReportPage implements OnInit {
   }
 
   getInventory() {
-    const path = 'inventario/';
+    const path = `inventario/`;
+
+    this.loading = true;
+
     this.firebaseService.getCollectionInventory(path)
-      .snapshotChanges()
-      .pipe(
-        map(changes => changes.map(c => ({
-          id: c.payload.doc.id,
-          ...c.payload.doc.data()
-        })))
+      .snapshotChanges().pipe(
+        map(changes => changes.length > 0 ? [{
+          id: changes[0].payload.doc.id,
+          ...changes[0].payload.doc.data()
+        }] : []), // Verifica si hay datos y toma solo el primer item
+        takeUntil(this.unsubscribe$)
       )
       .subscribe({
         next: (resp: any) => {
@@ -252,14 +258,17 @@ export class ReportPage implements OnInit {
   }
 
   getTool() {
-    const path = 'herramientas/';
+    const path = `herramientas/`;
+
+    this.loading = true;
+
     this.firebaseService.getCollectionTools(path)
-      .snapshotChanges()
-      .pipe(
-        map(changes => changes.map(c => ({
-          id: c.payload.doc.id,
-          ...c.payload.doc.data()
-        })))
+      .snapshotChanges().pipe(
+        map(changes => changes.length > 0 ? [{
+          id: changes[0].payload.doc.id,
+          ...changes[0].payload.doc.data()
+        }] : []), // Verifica si hay datos y toma solo el primer item
+        takeUntil(this.unsubscribe$)
       )
       .subscribe({
         next: (resp: any) => {

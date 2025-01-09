@@ -15,6 +15,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Servicio</th>
                 <th scope="col">Importe</th>
+                <th scope="col">Proveedor</th>
                 <th scope="col">Fecha</th>
               </tr>
             </thead>
@@ -23,6 +24,7 @@
                 <th scope="row">{{ i + 1 }}</th>
                 <td>{{ costos.elemento}}</td>
                 <td>{{ costos.importe| currency: 'MXN' }}</td>
+                <td>{{ costos.proveedor}}</td>
                 <td>{{ costos.fecha }}</td>
               </tr>
             </tbody>
