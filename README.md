@@ -8,10 +8,10 @@ Once the previous process is finished, run the project locally with the command:
 -ionic serve
 ```
 ## Login details
-**ADMIN**
+#### **ADMIN**
 - Account: admin@gmail.com
 - Password: admin1
-**EMPLOYEE**
+#### **EMPLOYEE**
 - Account: employ@gmail.com
 - Password: employ1
 
