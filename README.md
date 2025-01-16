@@ -1,3 +1,4 @@
+## Run Locally
 **After downloading the project**
 run the command from the terminal inside the "Eletric Cool" folder:
 ```bash
