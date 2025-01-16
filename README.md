@@ -9,8 +9,8 @@ Once the previous process is finished, run the project locally with the command:
 ```
 ##Login details:
 **ADMIN**
--Account: admin@gmail.com
--Password: admin1
+- Account: admin@gmail.com
+- Password: admin1
 **EMPLOYEE**
--Account: employ@gmail.com
--Password: employ1
+- Account: employ@gmail.com
+- Password: employ1
