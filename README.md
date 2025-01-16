@@ -2,11 +2,11 @@
 **After downloading the project**
 run the command from the terminal inside the "Eletric Cool" folder:
 ```bash
--npm i
+npm i
 ```
 Once the previous process is finished, run the project locally with the command:
 ```bash
--ionic serve
+ionic serve
 ```
 ## Login details
 #### **ADMIN**
