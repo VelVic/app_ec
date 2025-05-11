@@ -18,6 +18,11 @@ export class MainPage implements OnInit {
 
   pages = [
     {
+      title: 'Inicio',
+      url: '/main/home',
+      icon: 'home-outline',
+    },
+    {
       title: 'Clientes',
       url: '/main/registers',
       icon: 'briefcase-outline',

@@ -1,0 +1,102 @@
+<app-header [showMenu]="true" title="Inicio"></app-header>
+
+<ion-content>
+
+  <!-- Título de bienvenida -->
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-title>Bienvenido {{ user()?.name }}</ion-card-title>
+      <ion-card-subtitle>¿Qué deseas gestionar hoy?</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <!-- Tarjetas comunes -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card button routerLink="/main/registers">
+          <ion-card-content class="ion-text-center">
+            <ion-icon name="people-outline" size="large"></ion-icon>
+            <p>Clientes</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card button routerLink="/main/inventory">
+          <ion-card-content class="ion-text-center">
+            <ion-icon name="cube-outline" size="large"></ion-icon>
+            <p>Productos</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card button routerLink="/main/tools">
+          <ion-card-content class="ion-text-center">
+            <ion-icon name="construct-outline" size="large"></ion-icon>
+            <p>Herramientas</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card button routerLink="/main/costs">
+          <ion-card-content class="ion-text-center">
+            <ion-icon name="pricetags-outline" size="large"></ion-icon>
+            <p>Servicios</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card button routerLink="/main/profile">
+          <ion-card-content class="ion-text-center">
+            <ion-icon name="person-outline" size="large"></ion-icon>
+            <p>Perfil</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Si es admin, muestra las vistas adicionales -->
+    <ion-row *ngIf="user()?.tipo === 'admin'">
+      <ion-col size="6">
+        <ion-card button routerLink="/main/report">
+          <ion-card-content class="ion-text-center">
+            <ion-icon name="documents-outline" size="large"></ion-icon>
+            <p>Reportes</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card button routerLink="/main/employees">
+          <ion-card-content class="ion-text-center">
+            <ion-icon name="people-outline" size="large"></ion-icon>
+            <p>Empleados</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card button routerLink="/main/accounts">
+          <ion-card-content class="ion-text-center">
+            <ion-icon name="person-add-outline" size="large"></ion-icon>
+            <p>Cuentas</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-card button routerLink="/main/providers">
+          <ion-card-content class="ion-text-center">
+            <ion-icon name="library-outline" size="large"></ion-icon>
+            <p>Proveedores</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -63,7 +63,7 @@ export class AuthPage implements OnInit {
         .then((user: User) => {
 
           this.utillsService.savelocalStorage('user', user);
-          this.utillsService.routerLink('main/registers');
+          this.utillsService.routerLink('main/home');
           this.form.reset();
 
           this.utillsService.presentToast({
