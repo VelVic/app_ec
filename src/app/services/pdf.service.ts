@@ -54,32 +54,34 @@ export class PdfService {
     }
   }
 
-  // Función para cargar y convertir una imagen de fondo a base64
-  private loadBackgroundImage(): Promise<string> {
-    const backgroundImg = '../../../../assets/img/hec.jpg';
-    const backgroundImage = new Image();
-    backgroundImage.src = backgroundImg;
+// Función para cargar y convertir una imagen de fondo a base64
+private loadBackgroundImage(): Promise<string> {
+  const backgroundImg = 'assets/img/hec.jpg';
+  const backgroundImage = new Image();
+  // Evitar problemas de CORS al convertir a canvas
+  backgroundImage.crossOrigin = 'Anonymous';
+  backgroundImage.src = backgroundImg;
 
-    return new Promise<string>((resolve, reject) => {
-      backgroundImage.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        if (ctx) {
-          canvas.width = backgroundImage.width;
-          canvas.height = backgroundImage.height;
-          ctx.drawImage(backgroundImage, 0, 0);
-          resolve(canvas.toDataURL('image/jpeg'));
-        } else {
-          reject('Canvas context not available');
-        }
-      };
-      backgroundImage.onerror = reject;
-    });
-  }
+  return new Promise<string>((resolve, reject) => {
+    backgroundImage.onload = () => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        canvas.width = backgroundImage.width;
+        canvas.height = backgroundImage.height;
+        ctx.drawImage(backgroundImage, 0, 0);
+        resolve(canvas.toDataURL('image/jpeg'));
+      } else {
+        reject('Canvas context not available');
+      }
+    };
+    backgroundImage.onerror = reject;
+  });
+}
 }
 
-
-/* import { Injectable } from '@angular/core';
+/* 
+import { Injectable } from '@angular/core';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
@@ -126,5 +128,5 @@ export class PdfService {
       console.error('Element not found:', elementId);
     }
   }
-} */
-
+} 
+*/
